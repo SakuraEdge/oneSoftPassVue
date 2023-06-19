@@ -1,0 +1,6 @@
+.stupanel {
+    background: #fff;
+    -webkit-box-shadow: 0 6px 20px 0 rgba(68, 139, 255, .08);
+    box-shadow: 0 6px 20px 0 rgba(68, 139, 255, .08);
+    border-radius: 2px;
+}

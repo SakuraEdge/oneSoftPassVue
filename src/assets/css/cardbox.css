@@ -1,0 +1,9 @@
+.menuBox{
+    width: 79%;
+    height:1000px;
+    border-radius: 20px;
+    margin-top:10px;
+    margin-left:150px;
+    font-size: 15px;
+    font-weight: 550;
+}
