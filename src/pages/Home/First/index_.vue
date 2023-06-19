@@ -1,108 +1,109 @@
 <template>
   <body style="margin: 1px;">
     <div class="homeleft">
-      <el-card style="width: 95%; border-radius: 25px;padding-bottom: 12px">
-        <div slot="header" style="width: auto;">
-          <span style="float: right; font-size: 1.25rem;font-family: SIMLI;">安徽信息工程学院</span>
-        </div>
+      <div class="stupanel" id = "blueBK" style="width: 95%; border-radius: 5px;padding-bottom: 12px;">
         <div style="display: flex;">
-          <el-avatar :src="imageUrl" slot="reference" style="width: 80px;height: 80px;margin-left: 20px;"></el-avatar>
-          <span style="margin-left: 30px;font-size: 1.5rem;font-family: SIMLI;">{{ username }}</span>
-          <span style="margin-top: 15px;font-size: 1rem;font-family: SIMLI;">同学，你好！</span>
+          <el-avatar :src="imageUrl" slot="reference" style="width: 130px;height: 80px;margin-left: 20px;margin-top: 13px"></el-avatar>
+          <span style="margin-left: 20px;margin-top: 8px;width: 125px;text-align: center;font-size: 23px">{{ username }}</span>
+          <span style="left: 10px;margin-top: 20px;font-size: 1px;width: 300px">同学，你好！</span>
           <span
-            style="font-family: SIMLI;font-size: 1.3rem; margin-top: 45px;margin-left: -160px;border: 1px solid #3bd8da;padding: 5px;text-align: center;width: 400px;border-radius: 25px;">今日课程：3节
-            (直播课2节 | 面授课1节)</span>
+            style=" font-size: 1px;margin-top: 50px;height: 18px; background-color: rgb(0,0,0,0.15);
+            margin-left: -270px;margin-right:50px;border: 1px solid #3bd8da;
+            padding: 5px;text-align: center;width: 400px;border-radius: 20px;">
+            今日课程：3节 (直播课2节 | 面授课1节)
+          </span>
         </div>
-      </el-card>
-      <el-card style="width: 95%; height: 200px; border-radius: 25px;padding-bottom: 12px; margin-top: 20px;">
+      </div>
+      <div class="stupanel" style="width: 95%; height: 120px; border-radius: 5px;padding-bottom: 12px; margin-top: 20px;">
         <div slot="header" class="clearfix">
-          <span style="font-size: 1.7rem; font-weight: 1000;">| </span>
-          <span style="font-family: SIMLI; font-size: 2rem;">学习任务</span>
-          <span style="font-family: SIMLI; font-weight: 1000;">({{ testNum }})</span>
+          <span style="border-left:5px #1b64f0 solid">&nbsp;&nbsp;学习任务</span>
+          <span style="font-weight: 1000;">({{ testNum }})</span>
           <router-link target="_blank" :to="{ path: '/studytest' }"
-            style="color: black; float: right; padding: 3px 0; font-family: SIMLI; font-size: 1.25rem;" type="text">全部
+            style="color: black; float: right; padding: 3px 0;font-size: 2px;text-decoration: none;margin-right: 15px" type="text">全部
             ></router-link>
         </div>
-        <div v-for="(item, index) in studyTests.slice(0, 3)" :key="index"
-          style="font-family: SIMLI; font-size: 1.5rem; margin-top: 10px;">
-          <span style="font-family: STKAITI; font-size: 1rem;color: #FFCC33;border: 1px solid #B0B0B0;">待完成</span>
+        <div v-for="(item, index) in studyTests.slice(0, 3)" :key="index_"
+          style="margin-top: 10px;">
+          <span style="font-size: 11px;border: 1px solid rgba(255,165,0,0.92);background-color: rgba(255,165,0,0.05)">
+            <span style="margin: 3px;color: orange">待完成</span>
+          </span>
           {{ item.t_NAME }}_{{ item.created_TIME }}
           <router-link :to="{ name: 'finishomework', params: { tcode: item.t_CODE, tid: item.id } }"><el-button
-              style="float: right; padding: 3px 0; font-family: SIMLI; font-size: 1.25rem;" type="text">去完成</el-button>
+              style="float: right; padding: 3px 0;margin-right: 20px;font-size: 1px" type="text">去完成</el-button>
           </router-link>
         </div>
-      </el-card>
-      <el-card style="width: 95%; height: 200px; border-radius: 25px;padding-bottom: 12px; margin-top: 20px;">
+      </div>
+      <div class="stupanel" style="width: 95%; height: 120px; border-radius: 5px;padding-bottom: 12px; margin-top: 20px;">
         <div slot="header" class="clearfix">
-          <span style="font-size: 1.7rem; font-weight: 1000;">| </span>
-          <span style="font-family: SIMLI; font-size: 2rem;">我的待办</span>
-          <span style="font-family: SIMLI; font-weight: 1000;">({{ lookNum }})</span>
+          <span style="border-left:5px #1b64f0 solid">&nbsp;&nbsp;我的待办</span>
+          <span style=" font-weight: 1000;">({{ lookNum }})</span>
           <router-link target="_blank" :to="{ path: '/todo' }"
-            style="color: black; float: right; padding: 3px 0; font-family: SIMLI; font-size: 1.25rem;" type="text">全部
+            style="color: black; float: right; padding: 3px 0;font-size: 2px;text-decoration: none;margin-right: 15px" type="text">全部
             ></router-link>
         </div>
-        <div v-for="(item, index) in lookTests.slice(0, 3)" :key="index"
-          style="font-family: SIMLI; font-size: 1.5rem; margin-top: 10px;">
-          <span style="font-size: 1rem;color: #FFCC33;border: 1px solid #B0B0B0;">待批阅</span>
+        <div v-for="(item, index) in lookTests.slice(0, 3)" :key="index_"
+          style="margin-top: 10px;">
+          <span style="font-size: 11px;border: 1px solid rgba(255,165,0,0.92);background-color: rgba(255,165,0,0.05)">
+            <span style="margin: 3px;color: orange">待批阅</span>
+          </span>
           {{ item.name }}_{{ item.time }}
           <router-link :to="{ name: 'finishomework', params: { tcode: item.tCode, tid: item.taskID } }">
-            <el-button style="float: right; padding: 3px 0; font-family: SIMLI; font-size: 1.25rem;"
-              type="text">去完成</el-button>
+            <el-button style="float: right; padding: 3px 0;margin-right: 20px;font-size: 1px"
+                       type="text">去完成</el-button>
           </router-link>
         </div>
-      </el-card>
-      <el-card style="width: 95%; height: 400px; border-radius: 25px;padding-bottom: 12px; margin-top: 20px;">
+      </div>
+      <div class="stupanel" style="width: 95%; height: 250px; border-radius: 5px;padding-bottom: 12px; margin-top: 20px;">
         <div slot="header" class="clearfix">
-          <span style="font-size: 1.7rem; font-weight: 1000;">| </span>
-          <span style="font-family: SIMLI; font-size: 2rem;">我的开课</span>
-          <span style="font-family: SIMLI; font-weight: 1000;">({{ classNum }})</span>
-          <span style="font-family: SIMLI; margin-left: 20px; font-size: 1.2rem;">2021-2022学年 春季学期</span>
+          <span style="border-left:5px #1b64f0 solid">&nbsp;&nbsp;我的开课</span>
+          <span style="font-weight: 1000;">({{ classNum }})</span>
+          <span style="margin-left: 20px;">2021-2022学年 春季学期</span>
           <router-link target="_blank" :to="{ path: '/onlineclasses' }"
-            style="color: black; float: right; padding: 3px 0; font-family: SIMLI; font-size: 1.25rem;" type="text">全部
+            style="color: black; float: right; padding: 3px 0;font-size: 2px;text-decoration: none;margin-right: 15px" type="text">全部
             ></router-link>
         </div>
-        <div v-for="(item, index) in myClass.slice(0, 2)" :key="index">
-          <div style="width: auto; height: 130px; display: flex; border-bottom: 1px solid black;">
+        <div v-for="(item, index) in myClass.slice(0, 2)" :key="index_" style="font-size: 1px;
+            width: auto; height: 110px; display: flex; border-bottom: 1px solid #B0B0B0;">
             <router-link :to="{ name: 'courseactivitie', params: { course: item } }"
-              style="width: 100px; height: 100px; margin-top: 15px; flex: 3;">
+                         style="width: 100px; height: 100px; margin-top: 15px; flex: 3;">
               <el-image :src=hehe>
               </el-image>
             </router-link>
             <div style="flex: 8; display: inline-block; margin-top: 10px; ">
-              <span style="font-family: SIMLI;margin-left: 10px;font-weight: 530;font-size: 1.5rem;">{{ item.courseName
+              <span style="margin-left: 10px;font-weight: 530;">{{ item.courseName
               }}_{{ item.mainTeacher }}</span><br><br>
-              <span style="font-family: SIMLI;margin-left: 10px;font-size: 1.2rem;">主讲：{{ item.mainTeacher }}
+              <span style="margin-left: 10px;">主讲：{{ item.mainTeacher }}
               </span>
-              <span style="font-family: SIMLI;margin-left: 10px;font-size: 1.2rem;"
+              <span style="margin-left: 10px;"
                 v-if="item.assistTeacher != null">助教：{{
                   item.assistTeacher }}
               </span>
               <br><br>
               <span
-                style="height: 30px; margin-top: 10px; font-family:STKAITI;margin-left: 10px;font-size: 1.2rem;">课表：今日第4,5节
+                style="height: 30px; margin-top: 10px; margin-left: 10px;">课表：今日第4,5节
                 教学楼-W201</span>
               <span
-                style="height: 30px; margin-top: 10px; font-family: STKAITI;margin-left: 10px;font-size: 1rem;color: #FFCC33;border: 1px solid #B0B0B0;">{{
-                  item.type }}</span>
-              <span style="height: 30px; margin-top: 10px; font-family: STKAITI;margin-left: 10px;font-size: 1rem;"
+                style="height: 30px; margin-top: 10px; margin-left: 10px;color: #FFCC33;border: 1px solid #B0B0B0;">{{
+                  item.type }}</span><br>
+              <span style="height: 30px; margin-top: 10px; margin-left: 10px;"
                 v-if="item.code != null">教室号：{{
                   item.code }}</span>
             </div>
           </div>
         </div>
         <br>
-        <span style="font-family: SIMLI;font-size: 1.1rem; color: #708090;">提示：非本学期开课，请至“在线课堂”查看</span>
-      </el-card>
-    </div>
+        <br>
+        <span style="margin-left: 150px; color: #708090;font-size: 1px">提示：非本学期开课，请至“在线课堂”查看</span>
+      </div>
     <div class="homeright">
-      <el-card style="width: 100%; height: 1270px; border-radius: 25px">
+      <div class="stupanel"style="width: 100%; border-radius: 25px">
         <div class="timetable w100 h100">
           <div class="time-b w100">
             <div class="time-detail">{{ startTime }} - {{ endTime }}</div>
             <div class="time-controller">
               <el-button-group>
                 <el-button type="primary" icon="el-icon-arrow-left" @click="changeCount(1), getWeek(count)"></el-button>
-                <el-button round class="date-btn">第七周</el-button>
+                <el-button round class="date-btn">第{{week}}周</el-button>
                 <el-button type="primary" icon="el-icon-arrow-right" @click="changeCount(-1), getWeek(count)"></el-button>
               </el-button-group>
             </div>
@@ -126,43 +127,35 @@
               </thead>
               <tbody>
                 <tr v-for="(item2, index2) in maxCourseLength" :key="index2">
-                  <td>
-                    <p>{{ "第" + numberToChinease(item2) + "节" }}</p>
+                  <td style="width: 50px;">
+                    <p>{{item2}}</p>
                   </td>
                   <template v-for="(item3, index3) in weeks">
-                    <td :key="index3" :rowspan="showData(index3, index2 + 1).subject &&
-                      showData(index3, index2).subject ===
-                      showData(index3, index2 + 1).subject ? 2 : ''
-                      " :style="[
-    {
-      display:
-        showData(index3, index2 - 1).subject &&
-          showData(index3, index2 - 1).subject ===
-          showData(index3, index2).subject
-          ? 'none'
-          : '',
-    },
-  ]">
-                      <div class="dmsjandjs-b" :style="[
-                        {
-                          background: showData(index3, index2).index
-                            ? getRandomColor()
-                            : '#FFFFFF',
-                        },
-                        { color: '#fff' },
-                        { borderRadius: '15px' },
-                        { padding: '12px' },
-                        { height: '100%' },
-                      ]">
-                        <p>
-                          {{ showData(index3, index2).startTime }}
-                          {{ showData(index3, index2).startTime ? "-" : "" }}
-                          {{ showData(index3, index2).endTime }}
-                        </p>
-                        <p>{{ showData(index3, index2).subject }}</p>
-                        <p>{{ showData(index3, index2).major }}</p>
-                        <p>{{ showData(index3, index2).class }}</p>
-                      </div>
+                    <td :key="index3" :rowspan="
+                      showData(index3, index2 + 1).subject &&
+                        showData(index3, index2).subject ===
+                        showData(index3, index2 + 1).subject ? 2 : ''
+                    " :style="[
+  {
+    display:
+      showData(index3, index2 - 1).subject &&
+        showData(index3, index2 - 1).subject ===
+        showData(index3, index2).subject
+        ? 'none'
+        : '',
+  },
+]">
+
+                        <div style="text-align: left;font-size: 10px;transform: scale(0.8);" >
+
+                          <p style="font-size: 18px;">{{ showData(index3, index2).course }}</p>
+
+
+                          <p>{{ showData(index3, index2).classroom }}</p>
+
+                          <p>{{ showData(index3, index2).teacher }}</p>
+                        </div>
+
                     </td>
                   </template>
                 </tr>
@@ -170,7 +163,7 @@
             </table>
           </div>
         </div>
-      </el-card>
+      </div>
     </div>
   </body>
 </template>
@@ -178,13 +171,15 @@
 <script>
 import Cookies from 'js-cookie'
 import moment from "moment";
-import avata from '@/assets/images/avatar.png'
-import hehe from '@/assets/images/course.png'
+import avata from '@/assets/images/avatar.png';
+import hehe from '@/assets/images/course.png';
 import { weekCourse, colorList } from "../../../js/Timetable";
+import "@/assets/css/student.css"
 export default {
   data() {
     return {
       hehe: hehe,
+      buleBK: require('../../../static/blueBK.jpg'),
       uid: '',
       username: 'Harry',
       imageUrl: avata,
@@ -199,6 +194,7 @@ export default {
       colorList: [], //随机颜色
       weekCourse: [], // 课程详细课程、数量
       weeks: [], //头部周期
+      week: 7,//当前周
       maxCourseLength: 0, //最大课节数,
       count: 0, //上周、下周、本周选择器flag
     };
@@ -206,67 +202,67 @@ export default {
   created() {
     // 获得待完成任务
     this.$axios
-      .post('/task/selectStuTask', {
-        id: Cookies.get('uid'),
-      }).then(response => {
-        if (response.data.code == 500) {
-          return
-        } else {
-          console.log(response)
-          let time = ''
-          response.data.result.forEach((item, index) => {
-            if (item.t_ACTIVE == 0) {
-              this.testNum++
-              item.created_TIME = item.created_TIME.substring(0, 10).replaceAll('-', '')
-              this.studyTests.push(item)
-            }
-          })
-        }
-      })
+        .post('/task/selectStuTask', {
+          id: Cookies.get('uid'),
+        }).then(response => {
+      if (response.data.code == 500) {
+        return
+      } else {
+        console.log(response)
+        let time = ''
+        response.data.result.forEach((item, index) => {
+          if (item.t_ACTIVE == 0) {
+            this.testNum++
+            item.created_TIME = item.created_TIME.substring(0, 10).replaceAll('-', '')
+            this.studyTests.push(item)
+          }
+        })
+      }
+    })
     // 待办任务
     this.$axios
-      .post('/task/selectTaskMutualInfo', {
-        id: Cookies.get('uid'),
-      }).then(response => {
-        if (response.data.code == 500) {
-          return
-        } else {
-          console.log(response)
-          let time = ''
-          let obj = {}
-          response.data.result.forEach((item, index) => {
-            if (item.active == '未互评') {
-              this.lookNum++
-              time = item.createTime.substring(0, 10).replaceAll('-', '')
-              obj = { 'name': item.tName, 'time': time, 'tCode': item.tCode, 'taskID': item.taskID }
-              this.lookTests.push(obj)
-            }
-          })
-        }
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+        .post('/task/selectTaskMutualInfo', {
+          id: Cookies.get('uid'),
+        }).then(response => {
+      if (response.data.code == 500) {
+        return
+      } else {
+        console.log(response)
+        let time = ''
+        let obj = {}
+        response.data.result.forEach((item, index) => {
+          if (item.active == '未互评') {
+            this.lookNum++
+            time = item.createTime.substring(0, 10).replaceAll('-', '')
+            obj = { 'name': item.tName, 'time': time, 'tCode': item.tCode, 'taskID': item.taskID }
+            this.lookTests.push(obj)
+          }
+        })
+      }
+    })
+        .catch(function (error) {
+          console.log(error)
+        })
     // 我的开课
     this.$axios
-      .post('/course/selectCourseByTermAndYear', {
-        id: Cookies.get('uid'),
-        year: 2022,
-        term: 1
-      }).then(response => {
-        if (response.data.code == 500) {
-          return
-        } else {
-          // console.log(Cookies.get('uid'))
-          response.data.result.forEach((item, index) => {
-            this.classNum++
-            this.myClass.push(item)
-          })
-        }
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+        .post('/course/selectCourseByTermAndYear', {
+          id: Cookies.get('uid'),
+          year: 2022,
+          term: 1
+        }).then(response => {
+      if (response.data.code == 500) {
+        return
+      } else {
+        // console.log(Cookies.get('uid'))
+        response.data.result.forEach((item, index) => {
+          this.classNum++
+          this.myClass.push(item)
+        })
+      }
+    })
+        .catch(function (error) {
+          console.log(error)
+        })
     this.uid = Cookies.get('uid')
     this.username = Cookies.get('username')
     this.weekCourse = weekCourse;
@@ -278,7 +274,9 @@ export default {
   methods: {
     //改变选择器次数
     changeCount(i) {
+      if(this.week <= 1 && i > 0){return;}
       this.count += i;
+      this.week -= i;
       return this.count;
     },
     // 排序周期和课数
@@ -308,7 +306,7 @@ export default {
             //取出一周中最大的课节数及当天的最大课节数
             for (let j of item[key]) {
               j.index > this.maxCourseLength &&
-                (this.maxCourseLength = j.index); //取所有一周里最大课节值
+              (this.maxCourseLength = j.index); //取所有一周里最大课节值
               j.index > max && (max = j.index); //取当天最大课节值
             }
             // console.log("max:", max);
@@ -337,9 +335,9 @@ export default {
      */
     showData(weekIndex, courseNum) {
       if (
-        this.weekCourse[weekIndex] &&
-        this.weekCourse[weekIndex].courses[courseNum] &&
-        this.weekCourse[weekIndex].courses[courseNum].index === courseNum + 1
+          this.weekCourse[weekIndex] &&
+          this.weekCourse[weekIndex].courses[courseNum] &&
+          this.weekCourse[weekIndex].courses[courseNum].index === courseNum + 1
       ) {
         // this.getRandomColor();
         return this.weekCourse[weekIndex].courses[courseNum];
@@ -389,11 +387,11 @@ export default {
     getWeek(i) {
       let weekOfDay = parseInt(moment().format("E")); //计算今天是这周第几天
       let last_monday = moment()
-        .subtract(weekOfDay + 7 * i - 1, "days")
-        .format("YYYY-MM-DD"); //周一日期
+          .subtract(weekOfDay + 7 * i - 1, "days")
+          .format("YYYY-MM-DD"); //周一日期
       let last_sunday = moment()
-        .subtract(weekOfDay + 7 * (i - 1), "days")
-        .format("YYYY-MM-DD"); //周日日期
+          .subtract(weekOfDay + 7 * (i - 1), "days")
+          .format("YYYY-MM-DD"); //周日日期
       this.startTime = last_monday;
       this.endTime = last_sunday;
     },
@@ -402,38 +400,44 @@ export default {
 </script>
  
 <style scoped lang="scss">
+.div{
+  font-size: 1px;
+}
+.span{
+  font-size: 1px;
+}
+
+
 .homeleft {
   float: left;
-  left: 5%;
+  left: 8%;
   position: absolute;
   margin-top: 10px;
-  width: 45%;
-  height: 100%;
+  width: 30%;
 }
 
 .homeright {
   float: left;
-  right: 5%;
+  right: 8%;
   position: absolute;
   margin-top: 10px;
-  width: 45%;
-  height: 100%;
   background-color: white;
 }
 
 .timetable {
   background-color: #f1f7ff;
+  width: 800px;
 
   .w100 {
-    width: 100% !important;
+
   }
 
   .h100 {
-    height: 100% !important;
+
   }
 
   .time-b {
-    height: 46px;
+    height: 36px;
     margin-bottom: 1px;
     display: flex;
     align-items: center;
@@ -441,45 +445,42 @@ export default {
 
     .time-detail {
       color: #333333;
-      font-weight: 700;
-      font-size: 20px;
+      font-weight: 20;
+      font-size: 1px;
       font-family: "Microsoft YaHei";
     }
   }
 
   .timetable-b {
-    height: 1180px;
     background-color: #fff;
-    overflow: auto;
 
     .timetable-content {
-      height: 100%;
-      table-layout: fixed;
+      width: 800px;
+      height: 1050px;
       border-collapse: collapse; //设置表格的边框是否被合并为一个单一的边框
       text-align: center;
       color: #333333;
-      font-weight: 50;
-      font-size: 0.1px;
+      font-weight: 600;
+      font-size: 15px;
 
       thead {
-        height: 100px;
+        height: 30px;
 
         th {
-          border: 2px solid rgba(27, 100, 240, 0.1);
+          border: 2px solid rgba(0, 50, 50, 0.1);
         }
       }
 
       tbody {
-        height: calc(100% - 2px) / 7;
-
+        background-color: rgba(248, 248, 255, 0.5);
         td {
-          padding: 12px;
-          border: 2px solid rgba(27, 100, 240, 0.1);
-
+          border: 1px solid rgba(0, 0,  0, 0.1);
           .dmsjandjs-b {
-            display: flex;
+            height: 100%;
+            width: 100%;
             flex-direction: column;
             justify-content: center;
+            text-align: left;
           }
         }
       }
@@ -503,18 +504,12 @@ export default {
   }
 }
 
-@font-face {
-  font-family: 'SIMLI';
-  src: url('../../../assets/fonts/SIMLI.TTF');
-}
-
-@font-face {
-  font-family: 'STKAITI';
-  src: url('@/assets/fonts/STKAITI.TTF');
+.div {
+  font-family:Arial, "Microsoft Yahe", "微软雅黑", serifs;
 }
 
 .el-card ::v-deep .el-card__header {
-  padding: 10px 20px;
+  padding: 10px 10px;
   border-bottom: none
 }
 
@@ -526,5 +521,10 @@ export default {
 
 .clearfix:after {
   clear: both
+}
+
+#blueBK{
+  background-image: url("https://img-qn.51miz.com/preview/element/00/01/11/44/E-1114426-586DEA2C.jpg");
+  color: white;
 }
 </style>

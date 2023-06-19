@@ -1,5 +1,5 @@
 {
-  "name": "bofei",
+  "name": "onesoftpass",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,6 +13,7 @@
     "element-ui": "^2.15.10",
     "js-cookie": "^3.0.1",
     "moment": "^2.29.4",
+    "qs": "^6.11.0",
     "sass": "^1.60.0",
     "sass-loader": "^13.2.2",
     "vue": "^2.6.14",

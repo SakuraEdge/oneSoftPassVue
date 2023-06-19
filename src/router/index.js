@@ -3,9 +3,8 @@ import VueRouter from 'vue-router'
 import pathArr from '@/router/pathArr.js'
 
 // 导入路由组件
-import Home from '@/pages/Home/index'
-import Login from '@/pages/Login/index'
-import OnlineClasses from '@/pages/OnlineClasses/index'
+import Home from '@/components/Header/index'
+import Web from '@/pages/CommonWeb/index'
 import StudyTest from '@/pages/StudyTest/index'
 import First from '@/pages/Home/First/index'
 import ToDo from '@/pages/ToDo/index'
@@ -22,19 +21,14 @@ const router = new VueRouter({
   routes: [
     // 项目跑起来，重定向到home
     {
-      path: '*',
-      redirect: '/login'
+      path: '/',
+      component: First,
     },
     {
-      path: '/login',
-      component: Login
-    },
-    {
-      path: '/home',
+      path: '/action',
       component: Home,
       children: [
-        { name: 'first', path: '', component: First },
-        { name: 'onlineclasses', path: '/onlineclasses', component: OnlineClasses },
+        { name: 'commonweb', path: '/web', component: Web },
         { name: 'studytest', path: '/studytest', component: StudyTest },
         { name: 'todo', path: '/todo', component: ToDo },
         { name: 'courseactivitie', path: '/courseactivitie', component: CourseActivitie },
@@ -45,18 +39,5 @@ const router = new VueRouter({
   ]
 })
 
-// 全局前置导航守卫
-router.beforeEach(function (to, from, next) {
-  if (pathArr.indexOf(to.path) === -1) {
-    const token = localStorage.getItem('token')
-    if (token) {
-      next()
-    } else {
-      next('/login')
-    }
-  } else {
-    next()
-  }
-})
 
 export default router
