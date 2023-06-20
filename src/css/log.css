@@ -1,0 +1,110 @@
+.page {
+    position: relative;
+    padding-bottom: 2rem;
+    padding-right: 14rem;
+    display: block
+}
+
+.page .side-bar {
+    position: fixed;
+    top: 10rem;
+    bottom: 10rem;
+    right: 2rem;
+    overflow-y: scroll
+}
+
+
+.page .page-title {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 1rem 2.5rem;
+}
+
+.content__default:not(.custom) {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 2.5rem
+}
+
+
+body, html {
+    padding: 0;
+    margin: 0
+}
+
+body {
+    font-family: Ubuntu, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 14px;
+}
+
+.page, .password-wrapper-in {
+    overflow-x: hidden;
+}
+
+a {
+    font-weight: 500;
+    text-decoration: none
+}
+
+a, p a code {
+    color: #3eaf7c
+}
+
+p a code {
+    font-weight: 400
+}
+
+ol, ul {
+    padding-left: 1.2em
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    line-height: 1.25
+}
+
+.content__default:not(.custom) > h1, .content__default:not(.custom) > h2, .content__default:not(.custom) > h3, .content__default:not(.custom) > h4, .content__default:not(.custom) > h5, .content__default:not(.custom) > h6 {
+    margin-top: -1.5rem;
+    padding-top: 3.6rem;
+    margin-bottom: 1rem
+}
+
+.content__default:not(.custom) > h1:first-child, .content__default:not(.custom) > h2:first-child, .content__default:not(.custom) > h3:first-child, .content__default:not(.custom) > h4:first-child, .content__default:not(.custom) > h5:first-child, .content__default:not(.custom) > h6:first-child {
+    margin-top: -3.5rem
+}
+
+h1 {
+    font-size: 1.6rem;
+    letter-spacing: .02rem;
+}
+
+h2 {
+    font-size: 1.4rem;
+    letter-spacing: .02rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+    letter-spacing: .02rem;
+}
+
+a.header-anchor {
+    font-size: .85em;
+    float: left;
+    margin-left: -.87em;
+    padding-right: .23em;
+    margin-top: .125em;
+    opacity: 0;
+}
+
+a.header-anchor:hover {
+    text-decoration: none
+}
+
+
+
+ol, p, ul {
+    line-height: 2.2
+}

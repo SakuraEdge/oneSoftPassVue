@@ -1,57 +1,62 @@
 <template>
 <div class="border">
-  <el-card class="card">
+  <el-card v-for="(item,index) in webList" :key="index" class="card">
     <div>
       <span class="name">
-        百度
+        {{ item.name }}
       </span>
-      <span class="website">
-        www.baidu.com
-      </span>
-      <span>
-        基本上什么都可以查得到，用它就够了
-      </span>
-      <span class="gate">
-        点击跳转
-      </span>
-    </div>
-  </el-card>
-  <el-card class="card">
-    <div>
-      <span class="name">
-        Github
-      </span>
-      <span class="website">
-        www.github.com
+      <span class="website" v-on:click="copy(item.website)" >
+        {{ item.website }}
       </span>
       <span>
-        你想要的项目这里都有
+        {{ item.comment }}
       </span>
-      <span class="gate">
+      <a v-bind:href="item.website" target="_blank" class="gate">
         点击跳转
-      </span>
+      </a>
     </div>
   </el-card>
-  <el-card class="card">
-    <span class="name">
-        chatGPT
-      </span>
-    <span class="website">
-        chat.openai.com
-      </span>
-    <span>
-        有时候他甚至比你聪明
-      </span>
-    <span class="gate">
-        点击跳转
-      </span>
-  </el-card>
+  <div style="color: salmon;margin-top: 10px">
+    提示：点击网址可以直接复制到剪贴板
+  </div>
 </div>
 
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      webList: [],
+    }
+  },
+  created() {
+    this.$axios
+        .post('/website/getWebSite', {}).then(response => {
+      response.data.result.forEach((item, index) => {
+        this.webList.push(item)
+      })
+    })
+        .catch(function (error) {
+          console.log(error)
+        })
+  },
+  methods: {
+    open1() {
+      this.$notify({
+        message: '已将网址复制到剪贴板中',
+        showClose: false,
+        type: "success",
+        duration: 1500
+      })
+    },
+    copy(web){
+      this.$copyText(web).then(
+          this.open1
+      )
+      console.log(web)
+    }
+  },
   name: "index"
 }
 </script>
@@ -72,8 +77,9 @@ export default {
 
 .website{
   padding-left: 5%;
-  width: 250px;
+  width: 300px;
   float: left;
+  color: mediumslateblue;
 }
 
 .name{
@@ -83,6 +89,7 @@ export default {
 
 .gate{
   float: right;
+  color: #5a8cff;
 }
 
 

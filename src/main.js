@@ -1,4 +1,6 @@
 import Vue from 'vue'
+import VueClipBoard from 'vue-clipboard2'
+
 import App from './App.vue'
 // 导入axios
 import axios from 'axios'
@@ -12,6 +14,7 @@ import router from '@/router'
 import echarts from 'echarts'
 
 Vue.prototype.$echarts = echarts
+Vue.use(VueClipBoard)
 Vue.use(ElementUI)
 Vue.prototype.$axios = axios
 axios.defaults.baseURL = '/api'

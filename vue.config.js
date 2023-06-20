@@ -9,7 +9,7 @@ module.exports = defineConfig({
     // 跨域问题解决 代理（关键部分）
     proxy: {
       '/api': {
-        target: 'https://61.139.65.135:52482', // 注意！此处为后端提供的真实接口
+        target: 'http://127.0.0.1:8080', // 注意！此处为后端提供的真实接口
         changeOrigin: true, // 允许跨域
         ws: true,
         pathRewrite: {

@@ -11,7 +11,7 @@
           <el-menu-item index="/datasource" style = "color:black;">数据库表</el-menu-item>
           <el-menu-item index="/tools" style = "color:black;">实用工具</el-menu-item>
           <el-menu-item index="/web" style = "color:black;">常用网站</el-menu-item>
-          <el-menu-item index="/word" style = "color:black;">开发文档</el-menu-item>
+          <el-menu-item index="/log" style = "color:black;">更新日志</el-menu-item>
           <!-- <el-menu-item index="/images">图片上传</el-menu-item> -->
           <!-- 头像 -->
         </el-menu>

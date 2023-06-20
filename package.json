@@ -17,6 +17,7 @@
     "sass": "^1.60.0",
     "sass-loader": "^13.2.2",
     "vue": "^2.6.14",
+    "vue-clipboard2": "^0.3.3",
     "vue-router": "^3.5.2"
   },
   "devDependencies": {
