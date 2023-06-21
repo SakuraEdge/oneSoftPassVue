@@ -14,7 +14,9 @@
           <el-menu-item index="/log" style = "color:black;">更新日志</el-menu-item>
           <!-- <el-menu-item index="/images">图片上传</el-menu-item> -->
           <!-- 头像 -->
+          <div style="float: right;padding-top: 1rem;padding-right: 1rem">暂未登录</div>
         </el-menu>
+
       </el-header>
       <el-main style="padding: 0;overflow:hidden;">
         <router-view />

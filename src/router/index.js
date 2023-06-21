@@ -6,7 +6,7 @@ import pathArr from '@/router/pathArr.js'
 import Home from '@/components/Header/index'
 import Web from '@/pages/CommonWeb/index'
 import First from '@/pages/Home/First/index'
-import ToDo from '@/pages/ToDo/index'
+import Login from '@/pages/Login/index'
 import CourseActivitie from '@/pages/CourseActivitie/index'
 import FinisHomework from '@/pages/FinisHomework/index'
 import Assessment from '@/pages/Assessment/index'
@@ -31,7 +31,7 @@ const router = new VueRouter({
       children: [
         { name: 'commonweb', path: '/web', component: Web },
         { name: 'updateLog', path: '/log', component: UpdateLog },
-        { name: 'todo', path: '/todo', component: ToDo },
+        { name: 'login', path: '/login', component: Login },
         { name: 'courseactivitie', path: '/courseactivitie', component: CourseActivitie },
         { name: 'finishomework', path: '/finishomework', component: FinisHomework },
         { name: 'assessment', path: '/assessment', component: Assessment }

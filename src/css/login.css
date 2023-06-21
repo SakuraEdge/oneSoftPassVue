@@ -1,0 +1,72 @@
+.bk{
+    background: linear-gradient(to right, rgba(0, 0, 0, .3), rgba(0, 0, 0, .0)), url(../static/picture/backgroud.png);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.login_out{
+    padding-left: 60%;
+    padding-top: 9%;
+
+}
+
+
+.login{
+    width: 400px;
+    height: 488px;
+    border-radius: 15px;
+    background-color: rgba(255,255,255,1);
+}
+
+.title{
+    text-align: center;
+    font-weight: 800;
+    padding-top: 7%;
+    padding-bottom: 6%;
+    font-size: 24px;
+}
+
+.forget{
+    padding-top: .5rem;
+    float: right;
+    padding-right: .6rem;
+}
+
+.register{
+    padding-top: .5rem;
+    float: left;
+    padding-left: .7rem;
+}
+
+.content{
+    padding-top: 1rem;
+    width: 100%;
+}
+
+.input{
+    font-size: 14px;
+    font-weight: 900;
+}
+.el-input__inner {
+    height: 3rem;
+}
+.el-input{
+    width: 340px;
+    padding-left: 3%;
+}
+
+.login_btn{
+    width: 340px;
+    height: 3.2rem;
+    background: #3370FF;
+    margin-left: 3%;
+    color: white;
+    margin-top: 10%;
+    font-size: 20px;
+}
+
+.login_btn:hover{
+    background: #3c77ff;
+    color: white;
+}

@@ -25,7 +25,7 @@
             <h2 class="bigtext">壹软通Plus</h2>
             <h3 class="middletext">方便，轻松，快捷</h3>
             <div class="actions">
-              <a href="/person" class="btn">注册/登录</a>
+              <a href="/login" class="btn">注册/登录</a>
               <a href="/class" class="btn">开始使用</a>
             </div>
           </div>

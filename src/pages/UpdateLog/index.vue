@@ -12,6 +12,11 @@
         </div>
       </div>
       <div class="theme-reco-content content__default">
+        <h3> 2023/6/21</h3>
+        <ul>
+          <li>新建登录注册页面 </li>
+          <li>更新需登录才可使用内容的功能 </li>
+        </ul>
         <h3> 2023/6/20</h3>
         <ul>
           <li>将常用网站存入数据库中，从后端数据库调取 </li>
