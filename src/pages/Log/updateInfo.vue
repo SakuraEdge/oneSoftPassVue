@@ -2,7 +2,7 @@
   <main class="page" data-v-1156296a="">
     <section
         style="transition: transform 0.25s ease-in-out 0.08s, opacity 0.25s ease-in-out 0.08s; transform: translateY(0px); opacity: 1;">
-      <div class="page-title"><h1 class="title">更新日志</h1>
+      <div class="page-title"><h1 class="title"></h1>
         <div>
           <i class="iconfont reco-account">
             <span>
@@ -12,6 +12,11 @@
         </div>
       </div>
       <div class="theme-reco-content content__default">
+        <h3> 2023/6/25</h3>
+        <ul>
+          <li>完善注册/忘记密码接口 </li>
+          <li>为登录注册添加拦截器，若已登录则会自动返回首页 </li>
+        </ul>
         <h3> 2023/6/21</h3>
         <ul>
           <li>新建登录注册页面 </li>

@@ -40,7 +40,22 @@ export default {
       password: "",
     }
   },
+  created() {
+    // if (cookie.getCookie("id") !== null){
+    //   this.$router.push('/');
+    //   this.isLogin()
+    // }
+  },
   methods: {
+    isLogin() {
+      this.$notify({
+        title: '当前已登录账号',
+        message: '请退出账号后重试',
+        showClose: false,
+        type: "null",
+        duration: 2000
+      })
+    },
     success() {
       this.$notify({
         title: '登录成功！',
@@ -74,14 +89,14 @@ export default {
          tel: this.tel,
          password: this.password
        }).then(response=>{
-         console.log(response)
          if (response.data.code === 200){
            let loginInfo = {
              id: response.data.result.u_ID,
              name: response.data.result.name,
              tel: response.data.result.tel,
              email: response.data.result.email,
-             description: response.data.result.description
+             description: response.data.result.description,
+             password: response.data.result.password
            }
            cookie.setCookie(loginInfo,7);
            this.success();

@@ -1,6 +1,6 @@
 <template>
 <div class="border">
-  <el-card v-for="(item,index) in webList" :key="index" class="card">
+  <el-card v-for="(item,index) in webList" :key="webInfo" class="card">
     <div>
       <span class="name">
         {{ item.name }}

@@ -1,0 +1,12 @@
+.userInfoTable tr td[data-v-6b8be64e] {
+    padding: 10px 6px
+}
+
+.userInfoTable tr td[data-v-6b8be64e]:first-child {
+    opacity: .8;
+    min-width: 72px
+}
+
+.userInfoTable tr:last-child td[data-v-6b8be64e] {
+    border-bottom: 0px solid var(--n-merged-border-color)
+}

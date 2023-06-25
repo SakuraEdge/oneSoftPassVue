@@ -14,6 +14,8 @@
         <el-menu-item index="/log" style = "color:black;">更新日志</el-menu-item>
         <!-- <el-menu-item index="/images">图片上传</el-menu-item> -->
         <!-- 头像 -->
+        <div v-if="user === '暂未登录'" style="float: right;padding-top: 1rem;padding-right: 1rem"><a href="/login">{{user}}</a></div>
+        <div v-else style="float: right;padding-top: 1rem;padding-right: 1rem"><a href="/userInfo">{{user}}</a></div>
       </el-menu>
     </el-header>
   </el-container>
@@ -91,15 +93,57 @@
 
 <script>
 import '@/css/index.css'
+import cookie from "@/js/cookie";
 
 export default {
   name: "index",
+  data() {
+    return {
+      user: null,
+    }
+  },
+  created(){
+    if (cookie.getCookie("id") === null){
+      console.log("没有cookie")
+      this.user = "暂未登录"
+    }
+    else {
+      this.$axios
+          .post('/loginByCookie',{
+            tel: cookie.getCookie("tel"),
+            password: cookie.getCookie("password")
+          }).then(response =>{
+        if (response.data.code === 200){
+          this.user = cookie.getCookie("name") + ' (' + cookie.getCookie("id") + ')'
+        }
+        else if (response.data.code === 300){
+          this.error();
+          cookie.clearCookie('id');
+          cookie.clearCookie('name');
+          cookie.clearCookie('tel');
+          cookie.clearCookie('password');
+          cookie.clearCookie('email');
+          cookie.clearCookie('description');
+          this.user = "暂未登录"
+        }
+      })
+    }
+  },
   methods:{
     handleSelect(key, keyPath) {
       if (this.$route.path.indexOf(key) === -1) {
         this.$router.push(key)
       }
-    }
+    },
+    error(){
+      this.$notify({
+        title: '请重新登录',
+        message: '账号密码在近期进行过更改',
+        showClose: false,
+        type: "error",
+        duration: 2000
+      })
+    },
   }
 }
 </script>
