@@ -21,7 +21,7 @@
   </el-container>
   <div class="homepage">
     <div class="main">
-      <div class="content" style="font-size: 16px">
+      <div class="content" style="font-size: 16px;padding-top: 0rem;">
         <section class="board board-index">
           <div class="left-text">
             <h2 class="bigtext">壹软通Plus</h2>
@@ -73,7 +73,7 @@
 
           <div class="bg" id="about-bg"></div>
           <div class="left-text">
-            <div class="middletext">壹软通Plus(Version 3.0) 由 <br id="mobile-br">谢利杰进行开发</div>
+            <div class="middletext">壹软通Plus(Version 3.0) &nbsp;&nbsp;&nbsp; By. <br id="mobile-br">SakuraEdge</div>
             <br>
             <br>
             <span id="comname">安徽信息工程学院 </span> · 产业学院

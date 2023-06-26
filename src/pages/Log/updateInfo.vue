@@ -12,6 +12,11 @@
         </div>
       </div>
       <div class="theme-reco-content content__default">
+        <h3> 2023/6/26</h3>
+        <ul>
+          <li>修复了部分BUG </li>
+          <li style="text-decoration:line-through">今天摸了（×） </li>
+        </ul>
         <h3> 2023/6/25</h3>
         <ul>
           <li>完善注册/忘记密码接口 </li>

@@ -52,10 +52,10 @@ export default {
     }
   },
   created() {
-    // if (cookie.getCookie("id") !== null){
-    //   this.$router.push('/');
-    //   this.isLogin()
-    // }
+    if (cookie.getCookie("id") !== null){
+      this.$router.push('/');
+      this.isLogin()
+    }
   },
   methods: {
     isLogin() {

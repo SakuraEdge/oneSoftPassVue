@@ -13,7 +13,7 @@
                         <div class="n-page-header__main"><!---->
                           <div class="n-page-header__avatar">
                             <span class="n-avatar">
-                              <img
+                              <img class="avatar-img"
                                 src="https://gravatar.globalslb.net/avatar/bc5d8da384ce6725bbf48e0c428eea65"
                                 data-image-src="https://gravatar.globalslb.net/avatar/bc5d8da384ce6725bbf48e0c428eea65">
                               <!----></span>
@@ -57,7 +57,10 @@
                           <div  style="grid-column: span 2 / span 1;">
                             <div class="n-statistic" 
                                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-label-font-size: 14px; --n-label-font-weight: 400; --n-label-text-color: rgb(118, 124, 130); --n-value-font-weight: 400; --n-value-font-size: 24px; --n-value-prefix-text-color: rgb(51, 54, 57); --n-value-suffix-text-color: rgb(51, 54, 57); --n-value-text-color: rgb(51, 54, 57);">
-                              <div class="n-statistic__label">个性签名</div>
+                              <div class="n-statistic__label">
+                                个性签名：
+                              </div>
+
                               <div class="n-statistic-value"><!----><span class="n-statistic-value__content"><!----><div
                                   >{{description}}</div><!----></span><!----></div>
                             </div>
@@ -70,7 +73,7 @@
                           <div><!---->
                             <div >
                               <button class="n-button n-button--default-type n-button--medium-type" tabindex="0"
-                                      type="button"
+                                      type="button" @click="showPwdDialog()"
                                       style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;">
                                 <!----><span class="n-button__icon"><div class="n-icon-slot"><i role="img"
                                                                                                 class="n-icon"
@@ -84,16 +87,15 @@
                               </i>
                               </div>
                               </span>
-                                <span class="n-button__content"> 重置访问密钥</span>
+                                <span class="n-button__content"> 修改密码</span>
                                 <div aria-hidden="true" class="n-base-wave"></div>
                                 <div aria-hidden="true" class="n-button__border"></div>
                                 <div aria-hidden="true" class="n-button__state-border"></div>
                               </button>
                             </div><!----></div>
-                          <div  style="max-width: 100%;"><a
-                              class="n-button n-button--default-type n-button--medium-type" tabindex="0" type="button"
-                              disabled="false" href="https://openid.13a.com/user#tab-1" target="_blank"
-                              
+                          <div  style="max-width: 100%;"><button
+                              class="n-button n-button--default-type n-button--medium-type" type="button"
+                              @click="showEditDialog"
                               style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;">
                             <!----><span class="n-button__icon"><div class="n-icon-slot" ><i role="img"
                                                                                                         class="n-icon"
@@ -103,11 +105,11 @@
                               viewBox="0 0 24 24" ><path
                               d="M2 17h20v2H2v-2zm1.15-4.05L4 11.47l.85 1.48l1.3-.75l-.85-1.48H7v-1.5H5.3l.85-1.47L4.85 7L4 8.47L3.15 7l-1.3.75l.85 1.47H1v1.5h1.7l-.85 1.48l1.3.75zm6.7-.75l1.3.75l.85-1.48l.85 1.48l1.3-.75l-.85-1.48H15v-1.5h-1.7l.85-1.47l-1.3-.75L12 8.47L11.15 7l-1.3.75l.85 1.47H9v1.5h1.7l-.85 1.48zM23 9.22h-1.7l.85-1.47l-1.3-.75L20 8.47L19.15 7l-1.3.75l.85 1.47H17v1.5h1.7l-.85 1.48l1.3.75l.85-1.48l.85 1.48l1.3-.75l-.85-1.48H23v-1.5z"
                               fill="currentColor"></path></svg></i></div></span><span
-                              class="n-button__content"> 修改密码 </span>
+                              class="n-button__content"> 修改个性签名 </span>
                             <div aria-hidden="true" class="n-base-wave"></div>
                             <div aria-hidden="true" class="n-button__border"></div>
                             <div aria-hidden="true" class="n-button__state-border"></div>
-                          </a></div>
+                          </button></div>
                           <div  style="max-width: 100%;">
                             <button class="n-button n-button--default-type n-button--medium-type" tabindex="0"
                                     type="button" 
@@ -120,7 +122,7 @@
                                 viewBox="0 0 24 24" ><path
                                 d="M22 5.72l-4.6-3.86l-1.29 1.53l4.6 3.86L22 5.72zM7.88 3.39L6.6 1.86L2 5.71l1.29 1.53l4.59-3.85zM12.5 8H11v6l4.75 2.85l.75-1.23l-4-2.37V8zM12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9a9 9 0 0 0 0-18zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7z"
                                 fill="currentColor"></path></svg></i></div></span><span
-                                class="n-button__content"> 到期提醒 </span>
+                                class="n-button__content"> 签到 </span>
                               <div aria-hidden="true" class="n-base-wave"></div>
                               <div aria-hidden="true" class="n-button__border"></div>
                               <div aria-hidden="true" class="n-button__state-border"></div>
@@ -182,7 +184,7 @@
                      style="--n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px;  --n-title-font-size: 18px;">
                 <!---->
                   <div class="n-card-header">
-                    <div class="n-card-header__main" role="heading">流量包</div>
+                    <div class="n-card-header__main" role="heading">最近签到信息</div>
                   </div>
                   <div class="n-card__content"  style="overflow: auto;">
                     <table class="n-table n-table--bottom-bordered n-table--bordered n-table--single-line"
@@ -190,36 +192,40 @@
                            style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-td-color: #fff; --n-td-color-modal: #fff; --n-td-color-popover: #fff; --n-td-text-color: rgb(51, 54, 57); --n-border-color: rgba(239, 239, 245, 1); --n-border-color-modal: rgba(239, 239, 245, 1); --n-border-color-popover: rgba(239, 239, 245, 1); --n-border-radius: 3px; --n-font-size: 14px; --n-th-color: rgba(250, 250, 252, 1); --n-th-color-modal: rgba(250, 250, 252, 1); --n-th-color-popover: rgba(250, 250, 252, 1); --n-th-font-weight: 500; --n-th-text-color: rgb(31, 34, 37); --n-line-height: 1.6; --n-td-padding: 12px; --n-th-padding: 12px; --n-td-color-striped: rgba(250, 250, 252, 1); --n-td-color-striped-modal: rgba(250, 250, 252, 1); --n-td-color-striped-popover: rgba(250, 250, 252, 1); white-space: nowrap;">
                       <thead>
                       <tr>
-                        <th>类型</th>
-                        <th>剩余流量</th>
-                        <th>开始时间</th>
-                        <th>结束时间</th>
+                        <th>用户名</th>
+                        <th>签到信息</th>
+                        <th>签到时间</th>
+                        <th>获得经验</th>
                       </tr>
                       </thead>
                       <tbody>
                       <tr>
-                        <td><!---->
-                          <div style="display: flex; align-items: center;"><span>月基础流量 (结转)</span> &nbsp; <!----></div>
-                          <!----></td>
-                        <td style="width: 99%; padding-top: 7px;"><!---->
-                          <div>
-                            <div style="font-size: 12px; margin-bottom: 2px;">6.4 GiB / 5 GiB</div>
-                          </div>
+                        <td>
+                          <span>梦花</span>
                         </td>
-                        <td><!----><span>2023-06-01</span><!----></td>
-                        <td><!----><span>2023-06-30</span><!----></td>
+                        <td>
+                          <span>sbyd.</span>
+                        </td>
+                        <td>
+                          <span>2023-06-01</span>
+                        </td>
+                        <td>
+                          <span>+3</span>
+                        </td>
                       </tr>
                       <tr>
-                        <td><!---->
-                          <div style="display: flex; align-items: center;"><span>月基础流量</span> &nbsp; <!----></div>
-                          <!----></td>
-                        <td style="width: 99%; padding-top: 7px;"><!---->
-                          <div>
-                            <div style="font-size: 12px; margin-bottom: 2px;">5 GiB / 5 GiB</div>
-                          </div>
+                        <td>
+                          <span>admin</span>
                         </td>
-                        <td><!----><span>2023-06-01</span><!----></td>
-                        <td><!----><span>2023-06-30</span><!----></td>
+                        <td>
+                          <span>原神，启动！</span>
+                        </td>
+                        <td>
+                          <span>2023-06-01</span>
+                          </td>
+                        <td>
+                          <span>+5</span>
+                        </td>
                       </tr>
                       </tbody>
                     </table>
@@ -238,7 +244,7 @@
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                             viewBox="0 0 24 24" ><path
                             d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14z"
-                            fill="currentColor"></path></svg></i></div></span><span class="n-button__content"> 查询过期 / 耗尽流量包 </span>
+                            fill="currentColor"></path></svg></i></div></span><span class="n-button__content"> 查询历史签到 </span>
                           <div aria-hidden="true" class="n-base-wave"></div>
                           <div aria-hidden="true" class="n-button__border"></div>
                           <div aria-hidden="true" class="n-button__state-border"></div>
@@ -277,25 +283,13 @@
                         </td>
                       </tr>
                       <tr >
-                        <td >实名认证</td>
-                        <td ><span >已认证</span></td>
+                        <td >上次登录时间</td>
+                        <td ><span >{{loginTime}}</span></td>
                       </tr>
                       <tr >
                         <td >注册时间</td>
                         <td >{{createTime}}</td>
                       </tr><!---->
-                      <tr >
-                        <td > 高级用户模式</td>
-                        <td >
-                          <div role="switch" aria-checked="false" class="n-switch n-switch--round n-switch--rubber-band"
-                               tabindex="0" 
-                               style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-button-border-radius: 3px; --n-button-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3), inset 0 0 1px 0 rgba(0, 0, 0, 0.05); --n-button-color: #FFF; --n-button-width: 18px; --n-button-width-pressed: 24px; --n-button-height: 18px; --n-height: max(22px, 18px); --n-offset: calc((22px - 18px) / 2); --n-opacity-disabled: 0.5; --n-rail-border-radius: 3px; --n-rail-color: rgba(0, 0, 0, .14); --n-rail-color-active: #18a058; --n-rail-height: 22px; --n-rail-width: 40px; --n-width: max(40px, calc(40px + 18px - 22px)); --n-box-shadow-focus: 0 0 0 2px rgba(24, 160, 88, 0.2); --n-loading-color: #18a058; --n-text-color: white; --n-icon-color: rgb(118, 124, 130);">
-                            <div class="n-switch__rail" aria-hidden="true"><!---->
-                              <div class="n-switch__button"><!----><!----><!----></div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
                       </tbody>
                     </table>
                   </div>
@@ -336,6 +330,39 @@
       </div>
       <div class="n-scrollbar-rail n-scrollbar-rail--vertical" data-scrollbar-rail="true"
            aria-hidden="true"><!----></div><!----></div>
+    <div style="margin-top: 2%">
+    </div>
+    <el-dialog title="编辑个性签名" :visible.sync="editDialogVisible">
+      <el-form :model="editForm">
+        <el-form-item>
+          <el-input v-model="editForm.description"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="editDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="submitEditForm">确 定</el-button>
+      </div>
+    </el-dialog>
+    <el-dialog title="修改密码" :visible.sync="pwdDialogVisible">
+      <el-form :model="pwdForm">
+        <el-form-item>
+          <div class="pwd-input">
+            <el-input v-model="pwdForm.oldPwd" placeholder="请输入旧密码" show-password></el-input>
+          </div >
+          <div class="pwd-input">
+            <el-input v-model="pwdForm.newPwd" placeholder="请输入新密码" show-password></el-input>
+          </div>
+          <div class="pwd-input">
+            <el-input v-model="pwdForm.rePwd" placeholder="请再次输入密码" show-password></el-input>
+          </div>
+
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="pwdDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="submitPwdForm">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -351,7 +378,19 @@ export default {
       tel: "",
       email: "",
       createTime: "",
-      description: ""
+      description: "",
+      loginTime: "",
+      editDialogVisible: false,
+      pwdDialogVisible: false,
+      editForm: {
+        description: ''
+      },
+      pwdForm: {
+        oldPwd: "",
+        newPwd: "",
+        rePwd: "",
+      }
+
     }
   },
   created() {
@@ -359,18 +398,22 @@ export default {
       this.error("错误！","请先登录后再查看个人信息")
       this.$router.push("/login")
     }
-    this.$axios.post("/getUserInfo",{
-      "id": cookie.getCookie("id")
-    }).then(res =>{
-      let result = res.data.result;
-      this.username = result.name;
-      this.tel = result.tel;
-      this.email = result.email;
-      this.description = result.description;
-      this.createTime = result.create_TIME;
-    }).catch(res =>{
-      this.error("出现未知错误","请及时联系管理员")
-    })
+    else {
+      this.$axios.post("/getUserInfo",{
+        "id": cookie.getCookie("id")
+      }).then(res =>{
+        let result = res.data.result;
+        this.username = result.name;
+        this.tel = result.tel;
+        this.email = result.email;
+        this.description = result.description;
+        this.createTime = result.create_TIME;
+        this.loginTime = result.login_TIME;
+      }).catch(res =>{
+        this.error("出现未知错误","请及时联系管理员")
+      })
+    }
+
   },
   methods: {
     error(title,info) {
@@ -382,13 +425,75 @@ export default {
         duration: 2000
       })
     },
+    success(title,info){
+      this.$notify({
+        title: title,
+        message: info,
+        showClose: false,
+        type: "success",
+        duration: 2000
+      })
+    },
     loginOut(){
       cookie.clearCookie("id");
       cookie.clearCookie("password");
+      this.success("登出成功","已自动返回首页...")
+      this.$router.push("/")
+    },
+    showEditDialog() {
+      this.editForm.description = this.description;
+      this.editDialogVisible = true;
+    },
+    showPwdDialog() {
+      this.pwdForm.newPwd = ""
+      this.pwdForm.oldPwd = ""
+      this.pwdForm.rePwd = ""
+      this.pwdDialogVisible = true;
+    },
+    submitEditForm() {
+      // 通过后端接口提交修改后的个人描述
+      this.$axios.post("/updateDes",{
+        id: cookie.getCookie("id"),
+        description: this.editForm.description
+      }).then(res => {
+        this.description = this.editForm.description;
+        this.success("成功","已成功修改个性签名");
+        this.editDialogVisible = false;
+      }).catch(res => {
+        this.error("出现未知错误！","请及时联系管理员")
+      })
+    },
+    submitPwdForm() {
+      if (this.pwdForm.newPwd === "" || this.pwdForm.rePwd === "" || this.pwdForm.oldPwd === ""){
+        this.error("密码修改失败","输入的内容不能为空")
+      }
+      else if (this.pwdForm.newPwd !== this.pwdForm.rePwd){
+        this.error("密码修改失败","输入的新密码不匹配，请重试")
+      }
+      else{
+        this.$axios.post("/updatePwd",{
+          id: cookie.getCookie("id"),
+          pwd: this.pwdForm.oldPwd,
+          newPwd: this.pwdForm.newPwd
+        }).then(res => {
+          if (res.data.code === 300){
+            this.error("密码修改失败","旧密码有误，请重试")
+          }
+          else {
+            this.success("密码修改成功，已为你返回首页")
+            this.$router.push("/")
+          }
+        }).catch(res => {
+          this.error("出现未知错误！","请及时联系管理员")
+        })
+      }
     }
   }
 }
 </script>
 
 <style scoped>
+.pwd-input{
+  padding-bottom: 3%;
+}
 </style>
