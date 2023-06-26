@@ -18,7 +18,7 @@
                                 data-image-src="https://gravatar.globalslb.net/avatar/bc5d8da384ce6725bbf48e0c428eea65">
                               <!----></span>
                           </div>
-                          <div class="n-page-header__title">YHeng_dada</div><!----></div>
+                          <div class="n-page-header__title">{{ username }}</div><!----></div>
                         <div class="n-page-header__extra">
                           <div>普通用户 ·
                             <span>
@@ -35,7 +35,7 @@
                                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-label-font-size: 14px; --n-label-font-weight: 400; --n-label-text-color: rgb(118, 124, 130); --n-value-font-weight: 400; --n-value-font-size: 24px; --n-value-prefix-text-color: rgb(51, 54, 57); --n-value-suffix-text-color: rgb(51, 54, 57); --n-value-text-color: rgb(51, 54, 57);">
                               <div class="n-statistic__label">UID</div>
                               <div class="n-statistic-value"><!----><span
-                                  class="n-statistic-value__content">168087</span><!----></div>
+                                  class="n-statistic-value__content">{{ u_id }}</span><!----></div>
                             </div>
                           </div>
                           <div  style="grid-column: span 1 / span 1;">
@@ -43,7 +43,7 @@
                                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-label-font-size: 14px; --n-label-font-weight: 400; --n-label-text-color: rgb(118, 124, 130); --n-value-font-weight: 400; --n-value-font-size: 24px; --n-value-prefix-text-color: rgb(51, 54, 57); --n-value-suffix-text-color: rgb(51, 54, 57); --n-value-text-color: rgb(51, 54, 57);">
                               <div class="n-statistic__label">手机号</div>
                               <div class="n-statistic-value"><!----><span
-                                  class="n-statistic-value__content">188****2004</span><!----></div>
+                                  class="n-statistic-value__content">{{tel}}</span><!----></div>
                             </div>
                           </div>
                           <div  style="grid-column: span 1 / span 1;">
@@ -51,7 +51,7 @@
                                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-label-font-size: 14px; --n-label-font-weight: 400; --n-label-text-color: rgb(118, 124, 130); --n-value-font-weight: 400; --n-value-font-size: 24px; --n-value-prefix-text-color: rgb(51, 54, 57); --n-value-suffix-text-color: rgb(51, 54, 57); --n-value-text-color: rgb(51, 54, 57);">
                               <div class="n-statistic__label">邮箱</div>
                               <div class="n-statistic-value"><!----><span
-                                  class="n-statistic-value__content">351945458@qq.com</span><!----></div>
+                                  class="n-statistic-value__content">{{email}}</span><!----></div>
                             </div>
                           </div>
                           <div  style="grid-column: span 2 / span 1;">
@@ -59,7 +59,7 @@
                                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-label-font-size: 14px; --n-label-font-weight: 400; --n-label-text-color: rgb(118, 124, 130); --n-value-font-weight: 400; --n-value-font-size: 24px; --n-value-prefix-text-color: rgb(51, 54, 57); --n-value-suffix-text-color: rgb(51, 54, 57); --n-value-text-color: rgb(51, 54, 57);">
                               <div class="n-statistic__label">个性签名</div>
                               <div class="n-statistic-value"><!----><span class="n-statistic-value__content"><!----><div
-                                  >这是一个测试账号</div><!----></span><!----></div>
+                                  >{{description}}</div><!----></span><!----></div>
                             </div>
                           </div>
                         </div>
@@ -282,7 +282,7 @@
                       </tr>
                       <tr >
                         <td >注册时间</td>
-                        <td >2020-08-07</td>
+                        <td >{{createTime}}</td>
                       </tr><!---->
                       <tr >
                         <td > 高级用户模式</td>
@@ -300,28 +300,34 @@
                     </table>
                   </div>
                   <div class="n-card__footer" >
-                    <div  class="n-space" 
+                    <div class="n-space"
                          style="display: flex; flex-flow: row wrap; justify-content: flex-end; gap: 8px 12px;">
-                      <div  style="max-width: 100%;"><a
-                          class="n-button n-button--error-type n-button--medium-type n-button--ghost" tabindex="0"
-                          type="button" disabled="false" href="https://openid.13a.com/user#tab-4" target="_blank"
-                          
-                          style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #d03050; --n-text-color: #d03050; --n-text-color-hover: #de576d; --n-text-color-pressed: #ab1f3f; --n-text-color-focus: #de576d; --n-text-color-disabled: #d03050; --n-border: 1px solid #d03050; --n-border-hover: 1px solid #de576d; --n-border-pressed: 1px solid #ab1f3f; --n-border-focus: 1px solid #de576d; --n-border-disabled: 1px solid #d03050; --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;">
-                        <!----><span class="n-button__icon"><div class="n-icon-slot" ><i role="img"
-                                                                                                    class="n-icon"
-                                                                                                    
-                                                                                                    style="--n-bezier: cubic-bezier(.4, 0, .2, 1);"><svg
-                          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                          viewBox="0 0 24 24" ><path
-                          d="M15.18 10.94c.2-.44.32-.92.32-1.44C15.5 7.57 13.93 6 12 6c-.52 0-1 .12-1.44.32l4.62 4.62z"
-                          fill="currentColor"></path><path
-                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 13c-2.32 0-4.45.8-6.14 2.12A7.957 7.957 0 0 1 4 12c0-1.85.63-3.55 1.69-4.9l2.86 2.86a3.47 3.47 0 0 0 2.99 2.99l2.2 2.2c-.57-.1-1.15-.15-1.74-.15zm6.31 1.9L7.1 5.69A7.902 7.902 0 0 1 12 4c4.42 0 8 3.58 8 8c0 1.85-.63 3.54-1.69 4.9z"
-                          fill="currentColor"></path></svg></i></div></span><span
-                          class="n-button__content"> 注销账户 </span>
-                        <div aria-hidden="true" class="n-base-wave"></div>
-                        <div aria-hidden="true" class="n-button__border"></div>
-                        <div aria-hidden="true" class="n-button__state-border"></div>
-                      </a></div>
+                      <div style="max-width: 100%;">
+                        <button
+                            v-on:click="loginOut()"
+                            class="n-button n-button--error-type n-button--medium-type n-button--ghost"
+                            style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #d03050; --n-text-color: #d03050; --n-text-color-hover: #de576d; --n-text-color-pressed: #ab1f3f; --n-text-color-focus: #de576d; --n-text-color-disabled: #d03050; --n-border: 1px solid #d03050; --n-border-hover: 1px solid #de576d; --n-border-pressed: 1px solid #ab1f3f; --n-border-focus: 1px solid #de576d; --n-border-disabled: 1px solid #d03050; --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;">
+                          <!----><span class="n-button__icon">
+                        <div class="n-icon-slot">
+                        <i role="img" class="n-icon" style="--n-bezier: cubic-bezier(.4, 0, .2, 1);">
+                          <svg viewBox="0 0 24 24">
+                            <path
+                                d="M15.18 10.94c.2-.44.32-.92.32-1.44C15.5 7.57 13.93 6 12 6c-.52 0-1 .12-1.44.32l4.62 4.62z"
+                                fill="currentColor">
+                            </path>
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 13c-2.32 0-4.45.8-6.14 2.12A7.957 7.957 0 0 1 4 12c0-1.85.63-3.55 1.69-4.9l2.86 2.86a3.47 3.47 0 0 0 2.99 2.99l2.2 2.2c-.57-.1-1.15-.15-1.74-.15zm6.31 1.9L7.1 5.69A7.902 7.902 0 0 1 12 4c4.42 0 8 3.58 8 8c0 1.85-.63 3.54-1.69 4.9z"
+                                fill="currentColor">
+                            </path>
+                          </svg>
+                        </i>
+                      </div>
+                      </span>
+                          <span class="n-button__content"> 退出登录
+                        </span>
+                          <div aria-hidden="true" class="n-button__border"></div>
+                        </button>
+                      </div>
                     </div>
                   </div><!----></div>
               </el-card>
@@ -335,8 +341,52 @@
 
 <script>
 import "@/css/person.css"
+import cookie from "@/js/cookie";
 export default {
   name: "userInfo",
+  data() {
+    return {
+      u_id: cookie.getCookie("id"),
+      username: "",
+      tel: "",
+      email: "",
+      createTime: "",
+      description: ""
+    }
+  },
+  created() {
+    if (cookie.getCookie("id") === null){
+      this.error("错误！","请先登录后再查看个人信息")
+      this.$router.push("/login")
+    }
+    this.$axios.post("/getUserInfo",{
+      "id": cookie.getCookie("id")
+    }).then(res =>{
+      let result = res.data.result;
+      this.username = result.name;
+      this.tel = result.tel;
+      this.email = result.email;
+      this.description = result.description;
+      this.createTime = result.create_TIME;
+    }).catch(res =>{
+      this.error("出现未知错误","请及时联系管理员")
+    })
+  },
+  methods: {
+    error(title,info) {
+      this.$notify({
+        title: title,
+        message: info,
+        showClose: false,
+        type: "error",
+        duration: 2000
+      })
+    },
+    loginOut(){
+      cookie.clearCookie("id");
+      cookie.clearCookie("password");
+    }
+  }
 }
 </script>
 

@@ -88,28 +88,23 @@ export default {
        .post('/login',{
          tel: this.tel,
          password: this.password
-       }).then(response=>{
-         if (response.data.code === 200){
+       }).then(res=>{
+         if (res.data.code === 200){
            let loginInfo = {
-             id: response.data.result.u_ID,
-             name: response.data.result.name,
-             tel: response.data.result.tel,
-             email: response.data.result.email,
-             description: response.data.result.description,
-             password: response.data.result.password
+             id: res.data.result.u_ID,
+             password: res.data.result.password,
            }
            cookie.setCookie(loginInfo,7);
            this.success();
-           console.log(cookie.getCookie("description"))
            this.timer = setTimeout(() =>{
              this.$router.push('/');
            },3000);
-         } else if (response.data.code === 300) {
+         } else if (res.data.code === 300) {
            this.fail();
          } else {
            this.error();
          }
-      }).catch(response => {
+      }).catch(res => {
         this.error();
       })
     }

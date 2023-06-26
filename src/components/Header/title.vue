@@ -44,20 +44,16 @@ export default {
     else {
       this.$axios
           .post('/loginByCookie',{
-            tel: cookie.getCookie("tel"),
+            id: cookie.getCookie("id"),
             password: cookie.getCookie("password")
-          }).then(response =>{
-            if (response.data.code === 200){
-              this.user = cookie.getCookie("name") + ' (' + cookie.getCookie("id") + ')'
+          }).then(res =>{
+            if (res.data.code === 200){
+              this.user = res.data.result.name + ' (' + cookie.getCookie("id") + ')'
             }
-            else if (response.data.code === 300){
+            else if (res.data.code === 300){
               this.error();
               cookie.clearCookie('id');
-              cookie.clearCookie('name');
-              cookie.clearCookie('tel');
               cookie.clearCookie('password');
-              cookie.clearCookie('email');
-              cookie.clearCookie('description');
               this.user = "暂未登录"
             }
       })

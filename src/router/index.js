@@ -8,10 +8,8 @@ import Web from '@/pages/CommonWeb/webInfo'
 import First from '@/pages/Home/home'
 import Login from '@/pages/User/login'
 import Register from "@/pages/User/register";
-import FinisHomework from '@/pages/FinisHomework/index'
-import Assessment from '@/pages/Assessment/index'
 import UpdateLog from "@/pages/Log/updateInfo";
-import UserInfo from "@/pages/UserInfo/userInfo";
+import UserInfo from "@/pages/User/userInfo";
 
 // 将VueRouter安装为vue项目的插件
 Vue.use(VueRouter)
@@ -35,7 +33,6 @@ const router = new VueRouter({
         { name: 'login', path: '/login', component: Login },
         { name: 'register', path: '/register', component: Register },
         { name: 'userInfo', path: '/userInfo', component: UserInfo },
-        { name: 'assessment', path: '/assessment', component: Assessment }
       ]
     }
   ]
