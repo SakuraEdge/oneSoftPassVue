@@ -12,7 +12,10 @@ import 'element-ui/lib/theme-chalk/index.css'
 import router from '@/router'
 // 引入echarts
 import echarts from 'echarts'
+import md5 from 'js-md5';
 
+
+Vue.prototype.$md5 = md5;
 Vue.prototype.$echarts = echarts
 Vue.use(VueClipBoard)
 Vue.use(ElementUI)

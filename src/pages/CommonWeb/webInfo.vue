@@ -54,7 +54,6 @@ export default {
       this.$copyText(web).then(
           this.open1
       )
-      console.log(web)
     }
   },
   name: "index"
@@ -63,8 +62,8 @@ export default {
 
 <style scoped>
 .border{
-  padding-left: 8%;
-  padding-right: 8%;
+  padding-left: 10%;
+  padding-right: 10%;
 
 }
 

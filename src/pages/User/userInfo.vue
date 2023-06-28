@@ -199,32 +199,18 @@
                       </tr>
                       </thead>
                       <tbody>
-                      <tr>
+                      <tr v-for="(item,index) in sign_info[0]">
                         <td>
-                          <span>梦花</span>
+                          <span>{{ item.u_NAME }}</span>
                         </td>
                         <td>
-                          <span>sbyd.</span>
+                          <span>{{ item.s_MSG }}</span>
                         </td>
                         <td>
-                          <span>2023-06-01</span>
+                          <span>{{ item.s_TIME }}</span>
                         </td>
                         <td>
-                          <span>+3</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span>admin</span>
-                        </td>
-                        <td>
-                          <span>原神，启动！</span>
-                        </td>
-                        <td>
-                          <span>2023-06-01</span>
-                          </td>
-                        <td>
-                          <span>+5</span>
+                          <span>+{{ item.s_EXP }}</span>
                         </td>
                       </tr>
                       </tbody>
@@ -266,20 +252,11 @@
                            style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-td-color: #fff; --n-td-color-modal: #fff; --n-td-color-popover: #fff; --n-td-text-color: rgb(51, 54, 57); --n-border-color: rgba(239, 239, 245, 1); --n-border-color-modal: rgba(239, 239, 245, 1); --n-border-color-popover: rgba(239, 239, 245, 1); --n-border-radius: 3px; --n-font-size: 14px; --n-th-color: rgba(250, 250, 252, 1); --n-th-color-modal: rgba(250, 250, 252, 1); --n-th-color-popover: rgba(250, 250, 252, 1); --n-th-font-weight: 500; --n-th-text-color: rgb(31, 34, 37); --n-line-height: 1.6; --n-td-padding: 12px; --n-th-padding: 12px; --n-td-color-striped: rgba(250, 250, 252, 1); --n-td-color-striped-modal: rgba(250, 250, 252, 1); --n-td-color-striped-popover: rgba(250, 250, 252, 1);">
                       <tbody >
                       <tr >
-                        <td >访问密钥</td>
+                        <td >账户等级</td>
                         <td >
-                          <div ><span
-                              style="word-break: break-word; display: none;">fsmbwo5c7l01t3z4</span><a
-                              style="cursor: pointer; display: flex; flex-wrap: nowrap; align-items: center; gap: 4px;"><i
-                              role="img" class="n-icon"
-                              style="--n-bezier: cubic-bezier(.4, 0, .2, 1); font-size: 16px;">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                 viewBox="0 0 24 24">
-                              <path
-                                  d="M21 10h-8.35A5.99 5.99 0 0 0 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6a5.99 5.99 0 0 0 5.65-4H13l2 2l2-2l2 2l4-4.04L21 10zM7 15c-1.65 0-3-1.35-3-3s1.35-3 3-3s3 1.35 3 3s-1.35 3-3 3z"
-                                  fill="currentColor"></path>
-                            </svg>
-                          </i> 点击显示</a></div>
+                          <span>
+                            Level：{{level}} [{{level_exp}}]
+                          </span>
                         </td>
                       </tr>
                       <tr >
@@ -380,6 +357,9 @@ export default {
       createTime: "",
       description: "",
       loginTime: "",
+      level: "",
+      level_exp: "",
+      sign_info: [],
       editDialogVisible: false,
       pwdDialogVisible: false,
       editForm: {
@@ -409,6 +389,14 @@ export default {
         this.description = result.description;
         this.createTime = result.create_TIME;
         this.loginTime = result.login_TIME;
+        this.exp_get(result.exp)
+      }).catch(res =>{
+        this.error("出现未知错误","请及时联系管理员")
+      });
+
+      this.$axios.post("/getSignInfo",{
+      }).then(res =>{
+        this.sign_info.push(res.data.result)
       }).catch(res =>{
         this.error("出现未知错误","请及时联系管理员")
       })
@@ -433,6 +421,44 @@ export default {
         type: "success",
         duration: 2000
       })
+    },
+    exp_get(exp){
+      if (exp < 20){
+        this.level = 0
+        this.level_exp = exp + "/20"
+      }
+      else if (exp < 100){
+        this.level = 1
+        this.level_exp = exp + "/100"
+      }
+      else if (exp < 300){
+        this.level = 2
+        this.level_exp = exp + "/300"
+      }
+      else if (exp < 800){
+        this.level = 3
+        this.level_exp = exp + "/800"
+      }
+      else if (exp < 1500){
+        this.level = 4
+        this.level_exp = exp + "/1500"
+      }
+      else if (exp < 3000){
+        this.level = 5
+        this.level_exp = exp + "/3000"
+      }
+      else if (exp < 5000){
+        this.level = 6
+        this.level_exp = exp + "/5000"
+      }
+      else if (exp < 999999){
+        this.level = 7
+        this.level_exp = exp + "/--"
+      }
+      else {
+        this.level = "???"
+        this.level_exp = "MAX"
+      }
     },
     loginOut(){
       cookie.clearCookie("id");

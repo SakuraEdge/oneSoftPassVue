@@ -10,6 +10,11 @@ import Login from '@/pages/User/login'
 import Register from "@/pages/User/register";
 import UpdateLog from "@/pages/Log/updateInfo";
 import UserInfo from "@/pages/User/userInfo";
+import Change from "@/pages/Change/change";
+import Money from "@/pages/Money/money";
+import Code from "@/pages/Code/code";
+import Tool from "@/pages/Tool/tool";
+import Datasource from "@/pages/Datasource/datasource";
 
 // 将VueRouter安装为vue项目的插件
 Vue.use(VueRouter)
@@ -29,6 +34,11 @@ const router = new VueRouter({
       component: Home,
       children: [
         { name: 'commonweb', path: '/web', component: Web },
+        { name: 'change', path: '/change', component: Change },
+        { name: 'money', path: '/money', component: Money },
+        { name: 'code', path: '/code', component: Code },
+        { name: 'tool', path: '/tools', component: Tool },
+        { name: 'datasource', path: '/datasource', component: Datasource },
         { name: 'updateLog', path: '/log', component: UpdateLog },
         { name: 'login', path: '/login', component: Login },
         { name: 'register', path: '/register', component: Register },

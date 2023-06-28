@@ -12,6 +12,17 @@
         </div>
       </div>
       <div class="theme-reco-content content__default">
+        <h3> 2023/6/28</h3>
+        <ul>
+          <li>把所有页面都新建了 </li>
+          <li>制作编码转换内容 </li>
+          <li>完成了MD5加密与中文UniCode转换 </li>
+        </ul>
+        <h3> 2023/6/27</h3>
+        <ul>
+          <li>完善当前已有页面 </li>
+          <li>新增等级经验值 </li>
+        </ul>
         <h3> 2023/6/26</h3>
         <ul>
           <li>修复了部分BUG </li>

@@ -5,7 +5,7 @@
       <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect"
                style = "width: 100%;">
         <el-menu-item index="./#" style="color: black">首页</el-menu-item>
-        <el-menu-item index="/studytest" style = "color:black;">编码转换</el-menu-item>
+        <el-menu-item index="/change" style = "color:black;">编码转换</el-menu-item>
         <el-menu-item index="/money" style = "color:black;">货币汇率</el-menu-item>
         <el-menu-item index="/code" style = "color:black;">代码生成</el-menu-item>
         <el-menu-item index="/datasource" style = "color:black;">数据库表</el-menu-item>
@@ -28,7 +28,7 @@
             <h3 class="middletext">方便，轻松，快捷</h3>
             <div class="actions">
               <a href="/login" class="btn">注册/登录</a>
-              <a href="/class" class="btn">开始使用</a>
+              <a href="/change" class="btn">开始使用</a>
             </div>
           </div>
           <a class="float-down" href="#"></a>
