@@ -3,13 +3,13 @@ module.exports = defineConfig({
   transpileDependencies: true,
   devServer: {
     // 设置为0.0.0.0则所有的地址均能访问
-    host: '0.0.0.0',
+    allowedHosts:['all'],
     port: 8081,
     https: false,
     // 跨域问题解决 代理（关键部分）
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:8080', // 注意！此处为后端提供的真实接口
+        target: 'http://127.0.0.1:8088', // 注意！此处为后端提供的真实接口
         changeOrigin: true, // 允许跨域
         ws: true,
         pathRewrite: {
