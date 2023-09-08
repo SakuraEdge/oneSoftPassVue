@@ -13,6 +13,7 @@
         <el-option label="十六进制" value="16"></el-option>
       </el-select>
 
+
       <el-input v-model="binary" placeholder="请输入需要计算的值" class="binary-text"></el-input>
       <el-button class="binary-button" @click="getBinary">计算</el-button>
 
