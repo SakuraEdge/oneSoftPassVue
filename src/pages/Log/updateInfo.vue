@@ -13,6 +13,12 @@
       </div>
       <div class="theme-reco-content content__default">
         <el-scrollbar class="update-bar">
+          <h3> 2023/9/22</h3>
+          <ul>
+            <li>完成货币汇率页面 </li>
+            <li>修改了软件手机端显示效果，基础自适应</li>
+            <li>完成数据库数据源连接测试</li>
+          </ul>
           <h3> 2023/9/06</h3>
           <ul>
             <li>更新了货币汇率页面 </li>

@@ -258,7 +258,7 @@ export default {
 
 .exchange-title{
   font-weight: 600;
-  font-size: 17px;
+  font-size: 1.05rem;
 }
 
 ::v-deep .el-select .el-input {
@@ -271,7 +271,7 @@ export default {
 }
 
 ::v-deep .money-text .el-input__inner{
-  font-size: 17px;
+  font-size: 1.05rem;
   font-weight: 600;
   text-align: center;
 }
@@ -286,19 +286,19 @@ export default {
 
 .ret-card{
   font-weight: 600;
-  font-size: 14px;
+  font-size: 0.85rem;
 }
 
 .hui-get{
   padding-left: 2%;
   color: darkorchid;
-  font-size: 12px;
+  font-size: 0.7rem;
 }
 
 .exchange-title-2{
   float: right;
   font-weight: 600;
-  font-size: 11px;
+  font-size: 0.7rem;
 }
 
 </style>
