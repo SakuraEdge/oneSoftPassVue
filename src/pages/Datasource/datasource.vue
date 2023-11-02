@@ -1,5 +1,22 @@
 <template>
   <div>
+    <div>
+      <el-card class="source-card-left">
+
+      </el-card>
+      <el-card class="source-card-right">
+
+      </el-card>
+    </div>
+
+    <div class="fun-button">
+      <el-button icon="el-icon-document-add" type="success" plain>新建连接串</el-button>
+      <el-button icon="el-icon-paperclip">更改连接串</el-button>
+      <el-button icon="el-icon-document-copy">复制连接串</el-button>
+      <el-button icon="el-icon-document-remove" type="danger" plain>删除连接串</el-button>
+      <el-button class="fresh" icon="el-icon-refresh" circle></el-button>
+    </div>
+
     <el-select v-model="selectSource" placeholder="数据库源选择" @change="changeUrl">
       <el-option v-for="(sources,index) in source" :label="sources" :value="index"></el-option>
     </el-select>
@@ -20,7 +37,15 @@
     </span>
     <br>
     <el-button id="testConn" @click="testConn">点击测试</el-button>
+    <el-button id="saveConn" @click="saveConn">保存连接串</el-button>
+
+
+
+
+
+
   </div>
+
 
 </template>
 
@@ -61,11 +86,11 @@ export default {
     changeUrl() {
       if (this.selectSource === 0) {
         this.url = 'jdbc:oracle:thin:@'
-        this.changeOracleUrls()
+        this.changeUrls()
       }
       else {
         this.url = 'jdbc:mysql://'
-        this.changeMysqlUrls()
+        this.changeUrls()
       }
     },
     copy(text) {
@@ -79,17 +104,9 @@ export default {
       )
     },
     sourceInput() {
-      if (this.selectSource === 0) {
-        this.changeOracleUrls()
-      }
-      else {
-        this.changeMysqlUrls()
-      }
+      this.changeUrls()
     },
-    changeOracleUrls() {
-      this.urls = this.url + this.ip + ':' + this.port + ':' + this.table
-    },
-    changeMysqlUrls() {
+    changeUrls() {
       this.urls = this.url + this.ip + ':' + this.port + '/' + this.table
     },
     testConn() {
@@ -124,5 +141,31 @@ export default {
 </script>
 
 <style scoped>
+.source-card-left{
+  width: 62%;
+  margin-top: 2%;
+  margin-left: 3%;
+  height: 550px;
+  float: left;
+}
 
+.source-card-right{
+  width: 30%;
+  margin-top: 2%;
+  margin-right: 3%;
+  height: 550px;
+  float: right;
+}
+
+.fun-button{
+  float: left;
+  margin-top: 1%;
+  margin-left: 3%;
+  margin-right: 3%;
+  width: 94%;
+}
+
+.fresh{
+  margin-left: 25%;
+}
 </style>
