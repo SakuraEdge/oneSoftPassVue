@@ -107,18 +107,15 @@ export default {
   },
   methods: {
     open1() {
-      this.$notify({
+      this.$message({
         message: '已成功复制到剪贴板中',
-        showClose: false,
         type: "success",
         duration: 1500
       })
     },
-    error(title,info) {
-      this.$notify({
-        title: title,
+    error(info) {
+      this.$message({
         message: info,
-        showClose: false,
         type: "error",
         duration: 2000
       })
@@ -129,7 +126,7 @@ export default {
       }).then(res => {
         this.toUrl = res.data.result
       }).catch(res => {
-        this.error("转换出错！","请检查输入内容是否正确")
+        this.error("转换出错！请检查输入内容是否正确")
       })
     },
     decode(){
@@ -138,7 +135,7 @@ export default {
       }).then(res => {
         this.url = res.data.result
       }).catch(res => {
-        this.error("转换出错！","请检查输入内容是否正确")
+        this.error("转换出错！请检查输入内容是否正确")
       })
     },
     md5_change() {
@@ -171,7 +168,7 @@ export default {
         this.binary10 = result.binary10
         this.binary16 = result.binary16
       }).catch(res => {
-        this.error("转换出错！","请检查输入数字是否正确")
+        this.error("转换出错！请检查输入数字是否正确")
       })
 
     },

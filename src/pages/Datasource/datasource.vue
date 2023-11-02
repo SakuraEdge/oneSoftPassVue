@@ -10,34 +10,40 @@
     </div>
 
     <div class="fun-button">
-      <el-button icon="el-icon-document-add" type="success" plain>新建连接串</el-button>
+      <el-button icon="el-icon-document-add" type="success" plain @click="dialogFormVisible = true">新建连接串</el-button>
       <el-button icon="el-icon-paperclip">更改连接串</el-button>
       <el-button icon="el-icon-document-copy">复制连接串</el-button>
       <el-button icon="el-icon-document-remove" type="danger" plain>删除连接串</el-button>
       <el-button class="fresh" icon="el-icon-refresh" circle></el-button>
     </div>
 
-    <el-select v-model="selectSource" placeholder="数据库源选择" @change="changeUrl">
-      <el-option v-for="(sources,index) in source" :label="sources" :value="index"></el-option>
-    </el-select>
-    <br>
-    <el-input v-model="ip" id="ip" @input="sourceInput" placeholder="数据库ip"></el-input>
-    <br>
-    <el-input v-model="port" id="port" @input="sourceInput" placeholder="数据库端口"></el-input>
-    <br>
-    <el-input v-model="table" id="table" @input="sourceInput" placeholder="数据库名"></el-input>
-    <br>
-    <el-input v-model="userName" id="source_name" @input="sourceInput" placeholder="数据库用户名"></el-input>
-    <br>
-    <el-input v-model="userPwd" id="source_pwd" show-password @input="sourceInput" placeholder="数据库密码"></el-input>
-    <br>
-    自动生成的连接串为:
-    <span style="color: #5a8cff" @click="copy(urls)">
-      {{urls}}
-    </span>
-    <br>
-    <el-button id="testConn" @click="testConn">点击测试</el-button>
-    <el-button id="saveConn" @click="saveConn">保存连接串</el-button>
+
+    <el-dialog title="新建连接串" :visible.sync="dialogFormVisible">
+      <el-select class="form-input" v-model="selectSource" placeholder="数据库源选择" @change="changeUrl" style="margin-left: 1.6%">
+        <el-option v-for="(sources,index) in source" :label="sources" :value="index"></el-option>
+      </el-select>
+      <br>
+      <el-input class="form-input" v-model="ip" id="ip" @input="sourceInput" placeholder="数据库ip"></el-input>
+      <br>
+      <el-input class="form-input" v-model="port" id="port" @input="sourceInput" placeholder="数据库端口"></el-input>
+      <br>
+      <el-input class="form-input" v-model="table" id="table" @input="sourceInput" placeholder="数据库名"></el-input>
+      <br>
+      <el-input class="form-input" v-model="userName" id="source_name" @input="sourceInput" placeholder="数据库用户名"></el-input>
+      <br>
+      <el-input class="form-input" v-model="userPwd" id="source_pwd" show-password @input="sourceInput" placeholder="数据库密码"></el-input>
+      <br>
+      自动生成的连接串为:
+      <span style="color: #5a8cff" @click="copy(urls)">
+        {{ urls }}
+      </span>
+      <br>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button id="testConn" @click="testConn">点击测试</el-button>
+        <el-button type="primary" @click="sourceSave">保存连接串</el-button>
+      </div>
+    </el-dialog>
 
 
 
@@ -57,6 +63,7 @@ export default {
   data() {
     return {
       source: ['Oracle','Mysql'],
+      dataSave: [],
       selectSource: '',
       url: '',
       ip: '',
@@ -65,12 +72,16 @@ export default {
       table: '',
       userName: '',
       userPwd: '',
+      dialogFormVisible: false,
     }
   },
   created() {
     if (cookie.getCookie("id") == null){
       this.$router.push('/change');
       this.nullLogin()
+    }
+    else {
+
     }
   },
   methods: {
@@ -95,9 +106,8 @@ export default {
     },
     copy(text) {
       this.$copyText(text).then(
-          this.$notify({
+          this.$message({
             message: '已成功复制到剪贴板中',
-            showClose: false,
             type: "success",
             duration: 1500
           })
@@ -115,21 +125,46 @@ export default {
         userName: this.userName,
         userPwd: this.userPwd
       }).then(res => {
+        console.log(res.data.result)
         let code = res.data.code
         if (code === 200) {
-          this.$notify({
-            title: '测试成功',
-            message: '该连接串正常连接',
-            showClose: false,
+          this.$message({
+            message: '测试成功,该连接串正常连接',
             type: "success",
             duration: 2000
           })
         }
         else {
-          this.$notify({
-            title: '测试失败',
+          this.$message({
             message: res.data.result,
-            showClose: false,
+            type: "error",
+            duration: 2000
+          })
+        }
+      })
+    },
+    sourceSave() {
+      this.$axios.post("/sourceSave",{
+        uid: cookie.getCookie("id"),
+        type: this.selectSource,
+        ip: this.ip,
+        port: this.port,
+        table: this.table,
+        userName: this.userName,
+        userPwd: this.userPwd
+      }).then(res => {
+        let code = res.data.code
+        if (code === 200) {
+          this.$message({
+            message: '保存成功，连接串已加入数据库',
+            type: "success",
+            duration: 2000
+          })
+          this.dialogFormVisible = false
+        }
+        else {
+          this.$message({
+            message: res.data.result,
             type: "error",
             duration: 2000
           })
@@ -167,5 +202,9 @@ export default {
 
 .fresh{
   margin-left: 25%;
+}
+
+.form-input {
+  margin-bottom: 1%;
 }
 </style>

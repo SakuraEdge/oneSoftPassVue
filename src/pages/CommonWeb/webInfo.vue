@@ -43,9 +43,8 @@ export default {
   },
   methods: {
     open1() {
-      this.$notify({
+      this.$message({
         message: '已将网址复制到剪贴板中',
-        showClose: false,
         type: "success",
         duration: 1500
       })
