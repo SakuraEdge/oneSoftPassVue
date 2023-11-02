@@ -13,6 +13,12 @@
       </div>
       <div class="theme-reco-content content__default">
         <el-scrollbar class="update-bar">
+          <h3> 2023/11/02</h3>
+          <ul>
+            <li>优化了整体UI，修改整体数据库结构 </li>
+            <li>数据库表菜单中完成部分功能 </li>
+            <li>加入部分会员功能（？） </li>
+          </ul>
           <h3> 2023/9/22</h3>
           <ul>
             <li>完成货币汇率页面 </li>

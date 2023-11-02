@@ -1,21 +1,23 @@
 <template>
 <div class="border">
-  <el-card v-for="(item,index) in webList" :key="webInfo" class="card">
-    <div>
+  <el-scrollbar class="web-bar">
+    <el-card v-for="(item,index) in webList" :key="webInfo" class="card">
+      <div>
       <span class="name">
         {{ item.name }}
       </span>
-      <span class="website" v-on:click="copy(item.website)" >
+        <span class="website" v-on:click="copy(item.website)" >
         {{ item.website }}
       </span>
-      <span>
+        <span>
         {{ item.comment }}
       </span>
-      <a v-bind:href="item.website" target="_blank" class="gate">
-        点击跳转
-      </a>
-    </div>
-  </el-card>
+        <a v-bind:href="item.website" target="_blank" class="gate">
+          点击跳转
+        </a>
+      </div>
+    </el-card>
+  </el-scrollbar>
   <div style="color: salmon;margin-top: 10px">
     提示：点击网址可以直接复制到剪贴板
   </div>
@@ -88,6 +90,12 @@ export default {
 .gate{
   float: right;
   color: #5a8cff;
+}
+
+.web-bar{
+  overflow:scroll;
+  height: 600px;
+  width: 100%;
 }
 
 
