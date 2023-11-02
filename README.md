@@ -17,4 +17,4 @@
 >
 > 报错日志简单分析报错原因
 
-该项目为后端项目，前端地址：https://github.com/SakuraEdge/oneSoftPass
+该工程为前端项目，后端地址：https://github.com/SakuraEdge/oneSoftPass
