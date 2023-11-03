@@ -57,8 +57,36 @@
       <br>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button id="testConn" @click="testConn">点击测试</el-button>
+        <el-button @click="testConn(urls,userName,userPwd)">点击测试</el-button>
         <el-button type="primary" @click="sourceSave">保存连接串</el-button>
+      </div>
+    </el-dialog>
+
+
+    <el-dialog title="更改连接串" :visible.sync="dialogUpdateVisible">
+      <el-select class="form-input" v-model="selectUpdateSource" placeholder="数据库源选择" @change="changeUpdateUrl" style="margin-left: 1.6%;margin-right: 1.5%">
+        <el-option v-for="(sources,index) in source" :label="sources" :value="index"></el-option>
+      </el-select>
+      <el-input class="form-input" v-model="update.name" id="update.name" @input="sourceUpdateInput" placeholder="连接串名称"></el-input>
+      <br>
+      <el-input class="form-input" v-model="update.ip" id="update.ip" @input="sourceUpdateInput" placeholder="数据库ip"></el-input>
+      <el-input class="form-input" v-model="update.port" id="update.port" @input="sourceUpdateInput" placeholder="数据库端口"></el-input>
+      <br>
+      <el-input class="form-input" v-model="update.table" id="update.table" @input="sourceUpdateInput" placeholder="数据库名"></el-input>
+      <br>
+      <el-input class="form-input" v-model="update.userName" id="update.source_name" @input="sourceUpdateInput" placeholder="数据库用户名"></el-input>
+      <el-input class="form-input" v-model="update.userPwd" id="update.source_pwd" show-password @input="sourceUpdateInput" placeholder="数据库密码"></el-input>
+      <el-input class="form-input" style="width: 96.5%" v-model="update.note" id="update.note" @input="sourceUpdateInput" placeholder="备注信息"></el-input>
+      <br>
+      自动生成的连接串为:
+      <span style="color: #5a8cff" @click="copy(update.urls)">
+        {{ update.urls }}
+      </span>
+      <br>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogUpdateVisible = false">取 消</el-button>
+        <el-button @click="testConn(update.urls,update.userName,update.userPwd)">点击测试</el-button>
+        <el-button type="primary" @click="updateSourceSave">保存连接串</el-button>
       </div>
     </el-dialog>
 
@@ -83,6 +111,7 @@ export default {
       dataSave: [],
       checkList: [],
       selectSource: '',
+      selectUpdateSource: '',
       name: '',
       url: '',
       ip: '',
@@ -93,6 +122,18 @@ export default {
       userPwd: '',
       note: '',
       dialogFormVisible: false,
+      dialogUpdateVisible: false,
+      update: {
+        name: '',
+        ip: '',
+        port: '',
+        url: '',
+        urls: '',
+        table: '',
+        userName: '',
+        userPwd: '',
+        note: '',
+      }
     }
   },
   created() {
@@ -124,6 +165,17 @@ export default {
         this.changeUrls()
       }
     },
+    changeUpdateUrl() {
+      if (this.selectUpdateSource === 0) {
+        this.update.url = 'jdbc:oracle:thin:@'
+        console.log(this.update.selectSource)
+        this.changeUpdateUrls()
+      }
+      else {
+        this.update.url = 'jdbc:mysql://'
+        this.changeUpdateUrls()
+      }
+    },
     copy(text) {
       this.$copyText(text).then(
           this.$message({
@@ -136,14 +188,20 @@ export default {
     sourceInput() {
       this.changeUrls()
     },
+    sourceUpdateInput() {
+      this.changeUpdateUrls()
+    },
     changeUrls() {
       this.urls = this.url + this.ip + ':' + this.port + '/' + this.table
     },
-    testConn() {
+    changeUpdateUrls() {
+      this.update.urls = this.update.url + this.update.ip + ':' + this.update.port + '/' + this.update.table
+    },
+    testConn(urls,userName,userPwd) {
       this.$axios.post("/testConn",{
-        url: this.urls,
-        userName: this.userName,
-        userPwd: this.userPwd
+        url: urls,
+        userName: userName,
+        userPwd: userPwd
       }).then(res => {
         console.log(res.data.result)
         let code = res.data.code
@@ -226,6 +284,17 @@ export default {
           type: 'error',
           message: '仅能选择一条数据源进行更改'
         })
+      }
+      else {
+        this.selectUpdateSource = Number(this.checkList[0].data_TYPE)
+        this.update.name = this.checkList[0].name
+        this.update.ip = this.checkList[0].data_IP
+        this.update.port = this.checkList[0].data_PORT
+        this.update.table = this.checkList[0].data_TABLE
+        this.update.userName = this.checkList[0].data_USERNAME
+        this.update.userPwd = this.checkList[0].data_PASSWORD
+        this.update.note = this.checkList[0].note
+        this.dialogUpdateVisible = true
       }
     },
     delSource(){
