@@ -124,6 +124,7 @@ export default {
       dialogFormVisible: false,
       dialogUpdateVisible: false,
       update: {
+        id: '',
         name: '',
         ip: '',
         port: '',
@@ -286,6 +287,7 @@ export default {
         })
       }
       else {
+        this.update.id = this.checkList[0].id
         this.selectUpdateSource = Number(this.checkList[0].data_TYPE)
         this.update.name = this.checkList[0].name
         this.update.ip = this.checkList[0].data_IP
@@ -296,6 +298,38 @@ export default {
         this.update.note = this.checkList[0].note
         this.dialogUpdateVisible = true
       }
+    },
+    updateSourceSave(){
+      this.$axios.post("/updateSourceSave",{
+        name: this.update.name,
+        id: this.update.id,
+        type: this.selectUpdateSource,
+        ip: this.update.ip,
+        port: this.update.port,
+        table: this.update.table,
+        userName: this.update.userName,
+        userPwd: this.update.userPwd,
+        note: this.update.note
+      }).then(res => {
+        let code = res.data.code
+        if (code === 200) {
+          this.$message({
+            message: '保存成功，连接串已更新',
+            type: "success",
+            duration: 2000
+          })
+          this.dialogUpdateVisible = false
+          this.getSource()
+          this.checkList = []
+        }
+        else {
+          this.$message({
+            message: res.data.result,
+            type: "error",
+            duration: 2000
+          })
+        }
+      })
     },
     delSource(){
       this.$confirm('此操作将永久删除选中所有数据源, 是否继续?', '确认', {
