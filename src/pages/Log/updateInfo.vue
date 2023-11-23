@@ -13,6 +13,11 @@
       </div>
       <div class="theme-reco-content content__default">
         <el-scrollbar class="update-bar">
+          <h3> 2023/11/22</h3>
+          <ul>
+            <li>新增管理员管理页面 </li>
+            <li>优化数据库返回信息 </li>
+          </ul>
           <h3> 2023/11/13</h3>
           <ul>
             <li>新增数据源查看详情 </li>
