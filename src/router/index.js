@@ -15,6 +15,11 @@ import Money from "@/pages/Money/money";
 import Code from "@/pages/Code/code";
 import Tool from "@/pages/Tool/tool";
 import Datasource from "@/pages/Datasource/datasource";
+import Admin from "@/pages/Admin/adminMenu";
+import AdminHome from "@/pages/Admin/adminHome";
+import adminMenu from "@/pages/Admin/adminMenu";
+import adminHome from "@/pages/Admin/adminHome";
+import AdminMenu from "@/pages/Admin/adminMenu";
 
 // 将VueRouter安装为vue项目的插件
 Vue.use(VueRouter)
@@ -43,6 +48,13 @@ const router = new VueRouter({
         { name: 'login', path: '/login', component: Login },
         { name: 'register', path: '/register', component: Register },
         { name: 'userInfo', path: '/userInfo', component: UserInfo },
+      ]
+    },
+    {
+      path: '/adminMenu',
+      component: AdminMenu,
+      children: [
+        { name: 'aHome', path: '/admin', component: adminHome }
       ]
     }
   ]

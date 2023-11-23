@@ -20,7 +20,7 @@
                           </div>
                           <div class="n-page-header__title">{{ username }}</div><!----></div>
                         <div class="n-page-header__extra">
-                          <div>普通用户 ·
+                          <div>{{ this.adminLevelName }} ·
                             <span>
                               长期有效
                             </span>
@@ -127,6 +127,9 @@
                               <div aria-hidden="true" class="n-button__border"></div>
                               <div aria-hidden="true" class="n-button__state-border"></div>
                             </button>
+                          </div>
+                          <div v-if="adminLevelName === '管理员账户'" style="float: right">
+                            <el-button icon="el-icon-s-custom" size="medium" @click="admin">管理员面板</el-button>
                           </div>
                         </div>
                       </div>
@@ -357,6 +360,8 @@ export default {
       createTime: "",
       description: "",
       loginTime: "",
+      adminLevel: "",
+      adminLevelName: "",
       level: "",
       level_exp: "",
       sign_info: [],
@@ -383,12 +388,29 @@ export default {
         "id": cookie.getCookie("id")
       }).then(res =>{
         let result = res.data.result;
+        console.log(result)
         this.username = result.name;
         this.tel = result.tel;
         this.email = result.email;
         this.description = result.description;
         this.createTime = result.create_TIME;
         this.loginTime = result.login_TIME;
+        this.adminLevel = result.level;
+        if (this.adminLevel === '1'){
+          this.adminLevelName = '普通用户'
+        }
+        else if (this.adminLevel === '2'){
+          this.adminLevelName = 'VIP用户'
+        }
+        else if (this.adminLevel === '3'){
+          this.adminLevelName = 'SVIP用户'
+        }
+        else if (this.adminLevel === '4'){
+          this.adminLevelName = '至尊用户'
+        }
+        else {
+          this.adminLevelName = '管理员账户'
+        }
         this.exp_get(result.exp)
       }).catch(res =>{
         this.error("出现未知错误","请及时联系管理员")
@@ -404,6 +426,9 @@ export default {
 
   },
   methods: {
+    admin() {
+      window.open('/admin','_blank')
+    },
     error(title,info) {
       this.$notify({
         title: title,

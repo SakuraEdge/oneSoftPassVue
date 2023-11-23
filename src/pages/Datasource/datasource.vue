@@ -1,4 +1,4 @@
-<template>
+<template xmlns="http://www.w3.org/1999/html">
   <div>
     <div>
       <el-card class="source-card-left">
@@ -16,7 +16,7 @@
                   [{{data.note}}]
                 </span>
               </el-checkbox>
-              <el-button class="source-info-button" size="mini" type="text">点击查看详情</el-button>
+              <el-button class="source-info-button" size="mini" type="text" @click="source_info(data)">点击查看详情</el-button>
             </el-card>
           </el-checkbox-group>
         </el-scrollbar>
@@ -91,10 +91,48 @@
     </el-dialog>
 
 
-
-
-
-
+    <el-drawer
+        title="数据源详情"
+        :visible.sync="drawer"
+        :direction="direction"
+    >
+      <div class="source-info-col">
+        <span class="source-info-name">数据源ID </span> <span class="source-info-text"> {{ this.source_list.id }}</span>
+      </div>
+      <div class="source-info-col">
+        <span class="source-info-name">名称 </span> <span class="source-info-text"> {{ this.source_list.name}} </span>
+      </div>
+      <div class="source-info-col">
+        <span class="source-info-name">用户名 </span> <span class="source-info-text"> {{ this.source_list.userName}} </span> <br/>
+      </div>
+      <div class="source-info-col">
+        <span class="source-info-name">IP </span> <span class="source-info-text"> {{ this.source_list.ip}} </span> <br/>
+      </div>
+      <div class="source-info-col">
+        <span class="source-info-name">端口 </span> <span class="source-info-text"> {{ this.source_list.port}} </span> <br/>
+      </div>
+      <div class="source-info-col">
+        <span class="source-info-name">数据库类型 </span> <span class="source-info-text"> {{ this.source_list.type }}</span> <br/>
+      </div>
+      <div class="source-info-col">
+        <span class="source-info-name">Server名称 </span> <span class="source-info-text"> {{ this.source_list.table}} </span> <br/>
+      </div>
+      <div class="source-info-col">
+        <span class="source-info-name">密码 </span> <i class="el-icon-view" @click="changeShow"></i> <span class="source-info-text" > {{ this.source_list.userPwdShow}} </span> <br/>
+      </div>
+      <div class="source-info-col">
+        <span class="source-info-name">备注 </span> <span class="source-info-text"> {{ this.source_list.note}} </span> <br/>
+      </div>
+      <div class="source-info-col">
+        <span class="source-info-name">状态 </span> <span class="source-info-text"> {{ this.source_list.status}} </span> <br/>
+      </div>
+      <div class="source-info-col">
+        <span class="source-info-name">创建时间 </span> <span class="source-info-text"> {{ this.source_list.createTime}} </span> <br/>
+      </div>
+      <div class="source-info-col">
+        <span class="source-info-name">更新时间 </span> <span class="source-info-text"> {{ this.source_list.updateTime}} </span> <br/>
+      </div>
+    </el-drawer>
   </div>
 
 
@@ -107,6 +145,26 @@ export default {
   name: "datasource",
   data() {
     return {
+      drawer: false,
+      direction: 'rtl',
+      source_list: {
+        id: '',
+        name: '',
+        ip: '',
+        port: '',
+        url: '',
+        urls: '',
+        table: '',
+        userName: '',
+        userPwd: '',
+        note: '',
+        type: '',
+        status: '',
+        createTime: '',
+        updateTime: '',
+        userPwdShow: '',
+        isShow: '',
+      },
       source: ['Oracle','Mysql'],
       dataSave: [],
       checkList: [],
@@ -134,7 +192,8 @@ export default {
         userName: '',
         userPwd: '',
         note: '',
-      }
+      },
+
     }
   },
   created() {
@@ -366,6 +425,39 @@ export default {
           message: '已取消删除'
         });
       });
+    },
+    source_info(data) {
+      console.log(data)
+      this.source_list.name = data.name
+      this.source_list.id = data.id
+      this.source_list.ip = data.data_IP
+      this.source_list.port = data.data_PORT
+      this.source_list.table = data.data_TABLE
+      this.source_list.userName = data.data_USERNAME
+      this.source_list.userPwd = data.data_PASSWORD
+      this.source_list.type = this.source[data.data_TYPE]
+      this.source_list.note = data.note
+      this.source_list.createTime = data.create_TIME
+      this.source_list.updateTime = data.update_TIME
+      this.source_list.userPwdShow = '******'
+      this.source_list.isShow = false
+      if (data.state === 'U') {
+        this.source_list.status = '启用'
+      }
+      else {
+        this.source_list.status = '关闭'
+      }
+      this.drawer = true
+
+    },
+    changeShow() {
+      this.source_list.isShow = !this.source_list.isShow
+      if (this.source_list.isShow) {
+        this.source_list.userPwdShow = this.source_list.userPwd
+      }
+      else {
+        this.source_list.userPwdShow = '******'
+      }
     }
   }
 }
@@ -415,5 +507,19 @@ export default {
 
 .source-info-card {
   margin-bottom: 15px;
+}
+
+.source-info-col {
+  padding-bottom: 1%;
+  font-size: 15px;
+}
+
+.source-info-name {
+  float: left;
+  padding-left: 2%;
+  padding-right: 5%;
+  width: 25%;
+  text-align: right;
+  font-weight: 600;
 }
 </style>

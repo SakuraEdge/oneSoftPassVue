@@ -13,6 +13,12 @@
       </div>
       <div class="theme-reco-content content__default">
         <el-scrollbar class="update-bar">
+          <h3> 2023/11/13</h3>
+          <ul>
+            <li>新增数据源查看详情 </li>
+            <li>数据库中添加配置表用于存储 </li>
+            <li>进行账户等级划分，新增管理员菜单入口 </li>
+          </ul>
           <h3> 2023/11/02</h3>
           <ul>
             <li>优化了整体UI，修改整体数据库结构 </li>
