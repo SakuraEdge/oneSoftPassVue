@@ -20,6 +20,7 @@ import AdminHome from "@/pages/Admin/adminHome";
 import adminMenu from "@/pages/Admin/adminMenu";
 import adminHome from "@/pages/Admin/adminHome";
 import AdminMenu from "@/pages/Admin/adminMenu";
+import adminUserList from "@/pages/Admin/adminUserList";
 
 // 将VueRouter安装为vue项目的插件
 Vue.use(VueRouter)
@@ -51,10 +52,11 @@ const router = new VueRouter({
       ]
     },
     {
-      path: '/adminMenu',
+      path: '/admin',
       component: AdminMenu,
       children: [
-        { name: 'aHome', path: '/admin', component: adminHome }
+        { name: 'aHome', path: '/admin/home', component: adminHome },
+        { name: 'aUserList', path: '/admin/userList', component: adminUserList }
       ]
     }
   ]

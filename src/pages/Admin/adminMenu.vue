@@ -1,24 +1,26 @@
 <template>
   <div>
     <el-menu class="navMenu" @select="handleSelect">
-      <el-menu-item index="/admin">
+      <el-menu-item index="/admin/home">
         <i class="el-icon-location"></i>
         <span slot="title">首页 </span>
       </el-menu-item>
       <el-submenu index="1">
-        <template slot="title"><i class="el-icon-message"></i>用户管理</template>
-        <el-menu-item-group>
-          <template slot="title">分组一</template>
-          <el-menu-item index="/admin">选项1</el-menu-item>
-          <el-menu-item index="/">选项2</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="分组2">
-          <el-menu-item index="1-3">选项3</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="1-4-1">选项4-1</el-menu-item>
-        </el-submenu>
+        <template slot="title"><i class="el-icon-user"></i>用户管理</template>
+          <el-menu-item index="/admin/userList">用户列表</el-menu-item>
+          <el-menu-item index="/">用户权限管理</el-menu-item>
+      </el-submenu>
+      <el-submenu index="2">
+        <template slot="title"><i class="el-icon-message"></i>请求审批</template>
+          <el-menu-item index="/">网页共享请求</el-menu-item>
+          <el-menu-item index="/">权限请求</el-menu-item>
+          <el-menu-item index="/">数据源共享请求</el-menu-item>
+      </el-submenu>
+      <el-submenu index="3">
+        <template slot="title"><i class="el-icon-s-data"></i>数据管理</template>
+        <el-menu-item index="/">自定义网页管理</el-menu-item>
+        <el-menu-item index="/">数据源管理</el-menu-item>
+        <el-menu-item index="/">CDKEY管理</el-menu-item>
       </el-submenu>
     </el-menu>
     <el-card style="height: 100vh">
