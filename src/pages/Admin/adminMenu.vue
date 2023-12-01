@@ -8,7 +8,7 @@
       <el-submenu index="1">
         <template slot="title"><i class="el-icon-user"></i>用户管理</template>
           <el-menu-item index="/admin/userList">用户列表</el-menu-item>
-          <el-menu-item index="/">用户权限管理</el-menu-item>
+          <el-menu-item index="/admin/userPerm">用户权限管理</el-menu-item>
       </el-submenu>
       <el-submenu index="2">
         <template slot="title"><i class="el-icon-message"></i>请求审批</template>
@@ -52,7 +52,6 @@ export default {
         }
         else {
           this.userInfo = res.data.result
-          console.log(this.userInfo)
         }
       }
       else if (res.data.code === 300){

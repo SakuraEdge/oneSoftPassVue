@@ -11,7 +11,10 @@
       <el-checkbox-group v-model="userSelect">
         <el-card v-for="(data,index) in userList" class="user-info-card">
           <el-checkbox :label="data" :key="data">
-            <span class="user-info-1">
+            <span class="user-info-1" style="color: dodgerblue" v-if="data.state === 'U'">
+              {{ data.name }}
+            </span>
+            <span class="user-info-1" style="color: darkred" v-else>
               {{ data.name }}
             </span>
             <span class="user-info">

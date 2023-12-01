@@ -426,8 +426,26 @@ export default {
         });
       });
     },
+    getUrl(type,ip,port,table) {
+      if (type === '0') {
+        return 'jdbc:oracle:thin:@' + ip + ':' + port + '/' + table
+      }
+      else {
+        return 'jdbc:mysql://' + ip + ':' + port + '/' + table
+      }
+    },
     source_info(data) {
       console.log(data)
+
+      this.$axios.post("/getTables",{
+        "url": this.getUrl(data.data_TYPE,data.data_IP,data.data_PORT,data.data_TABLE),
+        "table": data.data_TABLE,
+        "userName": data.data_USERNAME,
+        "userPwd": data.data_PASSWORD
+      }).then(res=>{
+        console.log(res.data)
+          })
+
       this.source_list.name = data.name
       this.source_list.id = data.id
       this.source_list.ip = data.data_IP
