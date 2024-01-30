@@ -14,7 +14,6 @@ import router from '@/router'
 import echarts from 'echarts'
 import md5 from 'js-md5';
 
-
 Vue.prototype.$md5 = md5;
 Vue.prototype.$echarts = echarts
 Vue.use(VueClipBoard)

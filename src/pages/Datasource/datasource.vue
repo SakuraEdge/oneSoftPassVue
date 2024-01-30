@@ -36,7 +36,7 @@
 
 
     <el-dialog title="新建连接串" :visible.sync="dialogFormVisible">
-      <el-select class="form-input" v-model="selectSource" placeholder="数据库源选择" @change="changeUrl" style="margin-left: 1.6%;margin-right: 1.5%">
+      <el-select class="form-input" v-model="selectSource" placeholder="数据库源选择" @change="changeUrls" style="margin-left: 1.6%;margin-right: 1.5%">
         <el-option v-for="(sources,index) in source" :label="sources" :value="index"></el-option>
       </el-select>
       <el-input class="form-input" v-model="name" id="name" @input="sourceInput" placeholder="连接串名称"></el-input>
@@ -64,7 +64,7 @@
 
 
     <el-dialog title="更改连接串" :visible.sync="dialogUpdateVisible">
-      <el-select class="form-input" v-model="selectUpdateSource" placeholder="数据库源选择" @change="changeUpdateUrl" style="margin-left: 1.6%;margin-right: 1.5%">
+      <el-select class="form-input" v-model="selectUpdateSource" placeholder="数据库源选择" @change="changeUpdateUrls" style="margin-left: 1.6%;margin-right: 1.5%">
         <el-option v-for="(sources,index) in source" :label="sources" :value="index"></el-option>
       </el-select>
       <el-input class="form-input" v-model="update.name" id="update.name" @input="sourceUpdateInput" placeholder="连接串名称"></el-input>
@@ -140,6 +140,8 @@
 
 <script>
 import cookie from "@/js/cookie";
+import tool from "@/js/tool";
+
 
 export default {
   name: "datasource",
@@ -152,7 +154,6 @@ export default {
         name: '',
         ip: '',
         port: '',
-        url: '',
         urls: '',
         table: '',
         userName: '',
@@ -171,7 +172,6 @@ export default {
       selectSource: '',
       selectUpdateSource: '',
       name: '',
-      url: '',
       ip: '',
       port: '',
       urls: '',
@@ -186,7 +186,6 @@ export default {
         name: '',
         ip: '',
         port: '',
-        url: '',
         urls: '',
         table: '',
         userName: '',
@@ -215,27 +214,6 @@ export default {
         duration: 2000
       })
     },
-    changeUrl() {
-      if (this.selectSource === 0) {
-        this.url = 'jdbc:oracle:thin:@'
-        this.changeUrls()
-      }
-      else {
-        this.url = 'jdbc:mysql://'
-        this.changeUrls()
-      }
-    },
-    changeUpdateUrl() {
-      if (this.selectUpdateSource === 0) {
-        this.update.url = 'jdbc:oracle:thin:@'
-        console.log(this.update.selectSource)
-        this.changeUpdateUrls()
-      }
-      else {
-        this.update.url = 'jdbc:mysql://'
-        this.changeUpdateUrls()
-      }
-    },
     copy(text) {
       this.$copyText(text).then(
           this.$message({
@@ -252,10 +230,10 @@ export default {
       this.changeUpdateUrls()
     },
     changeUrls() {
-      this.urls = this.url + this.ip + ':' + this.port + '/' + this.table
+      this.urls = tool.getUrls(this.url,this.ip,this.port,this.table)
     },
     changeUpdateUrls() {
-      this.update.urls = this.update.url + this.update.ip + ':' + this.update.port + '/' + this.update.table
+      this.update.urls = tool.getUrls(this.update.url,this.update.ip,this.update.port,this.update.table)
     },
     testConn(urls,userName,userPwd) {
       this.$axios.post("/testConn",{
@@ -292,7 +270,7 @@ export default {
     sourceSave() {
       if (this.dataSave.length > 2) {
         this.$message({
-          message: "你的存储数量已达到上限，尝试开通会员提高上限",
+          message: "你的存储数量已达到上限",
           type: "error",
           duration: 2000
         })
@@ -426,19 +404,11 @@ export default {
         });
       });
     },
-    getUrl(type,ip,port,table) {
-      if (type === '0') {
-        return 'jdbc:oracle:thin:@' + ip + ':' + port + '/' + table
-      }
-      else {
-        return 'jdbc:mysql://' + ip + ':' + port + '/' + table
-      }
-    },
     source_info(data) {
       console.log(data)
 
       this.$axios.post("/getTables",{
-        "url": this.getUrl(data.data_TYPE,data.data_IP,data.data_PORT,data.data_TABLE),
+        "url": tool.getUrls(data.data_TYPE,data.data_IP,data.data_PORT,data.data_TABLE),
         "table": data.data_TABLE,
         "userName": data.data_USERNAME,
         "userPwd": data.data_PASSWORD
