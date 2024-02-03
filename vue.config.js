@@ -3,6 +3,7 @@ module.exports = defineConfig({
   transpileDependencies: true,
   devServer: {
     // 设置为0.0.0.0则所有的地址均能访问
+
     allowedHosts:['all'],
     port: 8081,
     https: false,
@@ -18,6 +19,12 @@ module.exports = defineConfig({
           '^/api': ''
         }
       }
+    },
+    client: {
+      webSocketURL: 'ws://0.0.0.0:8081/ws',
+    },
+    headers: {
+      'Access-Control-Allow-Origin': '*',
     }
   }
 })
