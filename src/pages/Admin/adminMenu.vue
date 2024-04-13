@@ -10,15 +10,15 @@
           <el-menu-item index="/admin/userList">用户列表</el-menu-item>
           <el-menu-item index="/admin/userPerm">用户权限管理</el-menu-item>
       </el-submenu>
-      <el-submenu index="2">
-        <template slot="title"><i class="el-icon-message"></i>请求审批</template>
-          <el-menu-item index="/">网页共享请求</el-menu-item>
-          <el-menu-item index="/">权限请求</el-menu-item>
-          <el-menu-item index="/">数据源共享请求</el-menu-item>
-      </el-submenu>
+<!--      <el-submenu index="2">-->
+<!--        <template slot="title"><i class="el-icon-message"></i>请求审批</template>-->
+<!--          <el-menu-item index="/">网页共享请求</el-menu-item>-->
+<!--          <el-menu-item index="/">权限请求</el-menu-item>-->
+<!--          <el-menu-item index="/">数据源共享请求</el-menu-item>-->
+<!--      </el-submenu>-->
       <el-submenu index="3">
         <template slot="title"><i class="el-icon-s-data"></i>数据管理</template>
-        <el-menu-item index="/">自定义网页管理</el-menu-item>
+        <el-menu-item index="/admin/web">自定义网页管理</el-menu-item>
         <el-menu-item index="/">数据源管理</el-menu-item>
         <el-menu-item index="/">CDKEY管理</el-menu-item>
       </el-submenu>

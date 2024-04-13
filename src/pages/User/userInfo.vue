@@ -427,7 +427,7 @@ export default {
   },
   methods: {
     admin() {
-      window.open('/admin','_blank')
+      window.open('/admin/home','_blank')
     },
     error(title,info) {
       this.$notify({

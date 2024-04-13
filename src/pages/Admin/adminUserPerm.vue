@@ -3,7 +3,7 @@
     <div slot="header" style="font-weight: 600;font-size: 18px">
       <span>用户权限详情</span>
       <el-button size="mini"style="float: right" @click="getUserList">搜索</el-button>
-      <el-input size="mini" style="float: right" placeholder="输入用户名" v-model="name">
+      <el-input @keydown.enter.native="getUserList" size="mini" style="float: right" placeholder="输入用户名" v-model="name">
         <i slot="suffix" class="el-input__icon el-icon-search"></i>
       </el-input>
     </div>
@@ -41,6 +41,26 @@
         </el-card>
       </el-checkbox-group>
     </el-scrollbar>
+    <el-dialog title="修改权限" :visible.sync="DialogVisible">
+      <el-form >
+        <el-form-item>
+          修改权限为：
+          <el-select v-model="selectValue" >
+            <el-option
+                v-for="item in searchSelect"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+            </el-option>
+          </el-select>
+
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="DialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="updateSubmit()">确 定</el-button>
+      </div>
+    </el-dialog>
   </el-card>
 </template>
 
@@ -51,6 +71,26 @@ export default {
   name: "adminUserPerm",
   data() {
     return {
+      selectValue: 1,
+      searchSelect: [{
+        value: 1,
+        label: '普通用户'
+      }, {
+        value: 2,
+        label: 'VIP用户'
+      }, {
+        value: 3,
+        label: 'SVIP用户'
+      }, {
+        value: 4,
+        label: 'TVIP用户'
+      }, {
+        value: 99,
+        label: '管理员'
+      }
+      ],
+      user: '',
+      DialogVisible: false,
       name: "",
       userList: [],
       userSelect: [],
@@ -95,10 +135,22 @@ export default {
         })
       }
       else {
-        console.log("权限通过")
+        this.user = data
+        this.DialogVisible = true
       }
-
-
+    },
+    updateSubmit() {
+      this.$axios.post("/updatePerm",{
+        id: this.user.u_ID,
+        perm: this.selectValue
+      }).then(v=>{
+        this.$message({
+          message: '成功修改权限',
+          type: "success",
+          duration: 2000
+        })
+        this.DialogVisible = false
+      })
     }
   }
 }
