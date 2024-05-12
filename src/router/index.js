@@ -23,6 +23,7 @@ import AdminMenu from "@/pages/Admin/adminMenu";
 import adminUserList from "@/pages/Admin/adminUserList";
 import adminUserPerm from "@/pages/Admin/adminUserPerm";
 import adminWeb from "@/pages/Admin/adminWeb";
+import chat from "@/pages/chat/chat";
 
 // 将VueRouter安装为vue项目的插件
 Vue.use(VueRouter)
@@ -45,7 +46,7 @@ const router = new VueRouter({
                 {name: 'change', path: '/change', component: Change},
                 {name: 'money', path: '/money', component: Money},
                 {name: 'code', path: '/code', component: Code},
-                {name: 'tool', path: '/tools', component: Tool},
+                {name: 'chat', path: '/chat', component: chat},
                 {name: 'datasource', path: '/datasource', component: Datasource},
                 {name: 'updateLog', path: '/log', component: UpdateLog},
                 {name: 'login', path: '/login', component: Login},

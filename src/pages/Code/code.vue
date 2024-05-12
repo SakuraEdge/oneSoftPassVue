@@ -16,18 +16,21 @@
         操作控制台
       </div>
       <div>
-        作者名(英文)：<el-input v-model="pakeageName" style="margin-left: -30px;margin-right: 50px"></el-input>
+        作者名(英文)：<el-input v-model="authorName" style="margin-left: -30px;margin-right: 50px"></el-input>
         项目名(英文)：<el-input v-model="pakeageName" style="margin-left: -30px;"></el-input>
       </div>
       <div>
-        <el-button class="code-button">生成Bean对象内容</el-button>
-        <el-button class="code-button">生成Controller层对象内容</el-button>
-        <el-button class="code-button">生成Controller层接口内容</el-button>
-        <el-button class="code-button">生成Service层对象内容</el-button>
-        <el-button class="code-button">生成Service层接口内容</el-button>
-        <el-button class="code-button">生成Dao层接口内容</el-button>
+        <el-button class="code-button" @click="getCodeBean">生成Bean对象内容</el-button>
+        <el-button class="code-button" @click="getCodeController">生成Controller层接口内容</el-button>
+        <el-button class="code-button" @click="getCodeService">生成Service层对象内容</el-button>
+        <el-button class="code-button" @click="getCodeServiceImpl">生成Service层接口内容</el-button>
+        <el-button class="code-button" @click="getCodeDAO">生成Dao层接口内容</el-button>
       </div>
       <el-divider></el-divider>
+      <div>
+        <el-button class="code-button" @click="downloadFile">下载代码至本地</el-button>
+      </div>
+
     </el-card>
     <el-card style="float: left;height: 600px;width: 23%">
       <div slot="header" style="font-weight: 600;font-size: 18px">
@@ -74,6 +77,7 @@
 <script>
 import cookie from "@/js/cookie";
 import tool from "@/js/tool";
+import getCode from "@/js/getCode"
 
 export default {
   name: "code",
@@ -82,6 +86,7 @@ export default {
       selectSource: '',
       selectTable: '',
       selectTableName: '',
+      authorName: '',
       pakeageName: '',
       dialogSelectVisible: false,
       source: [],
@@ -147,7 +152,66 @@ export default {
         this.keys.push(v['columnName'])
       }
       this.dialogSelectVisible = false
-    }
+    },
+    checkIsNull() {
+      if (this.selectTableName === '') {
+        this.notify("生成代码失败","数据表未选择","error")
+        return false
+      } else if(this.authorName === '' || this.pakeageName === '') {
+        this.notify("生成代码失败","作者名或项目名未填写","error")
+        return false
+      }
+      return true
+    },
+    getCodeBean() {
+      const isNull = this.checkIsNull()
+      if (isNull) {
+        this.codeGet = getCode.getCodeBean("com."+this.authorName+"."+this.pakeageName,this.selectTableName)
+      }
+    },
+    getCodeDAO() {
+      const isNull = this.checkIsNull()
+      if (isNull) {
+        this.codeGet = getCode.getCodeDAO("com."+this.authorName+"."+this.pakeageName,this.selectTableName)
+      }
+    },
+    getCodeController() {
+      const isNull = this.checkIsNull()
+      if (isNull) {
+        this.codeGet = getCode.getCodeController("com."+this.authorName+"."+this.pakeageName,this.selectTableName)
+      }
+    },
+    getCodeService() {
+      const isNull = this.checkIsNull()
+      if (isNull) {
+        this.codeGet = getCode.getCodeService("com."+this.authorName+"."+this.pakeageName,this.selectTableName)
+      }
+    },
+    getCodeServiceImpl() {
+      const isNull = this.checkIsNull()
+      if (isNull) {
+        this.codeGet = getCode.getCodeServiceImpl("com."+this.authorName+"."+this.pakeageName,this.selectTableName)
+      }
+    },
+    downloadFile() {
+      // 创建一个Blob对象，并设置其内容为content
+      const blob = new Blob([this.codeGet], { type: 'text/plain;charset=utf-8' });
+      // 创建一个指向Blob对象的URL
+      const url = window.URL.createObjectURL(blob);
+      // 创建一个链接元素
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', this.selectTableName+'.java'); // 设置下载文件名
+      // 将链接元素添加到DOM中
+      document.body.appendChild(link);
+      // 模拟点击链接
+      link.click();
+      // 然后从DOM中移除链接元素
+      document.body.removeChild(link);
+      // 释放URL对象
+      window.URL.revokeObjectURL(url);
+    },
+
   }
 }
 </script>

@@ -9,7 +9,7 @@
           <el-menu-item index="/money" style = "color:black;">货币汇率</el-menu-item>
           <el-menu-item index="/code" style = "color:black;">代码生成</el-menu-item>
           <el-menu-item index="/datasource" style = "color:black;">数据库表</el-menu-item>
-          <el-menu-item index="/tools" style = "color:black;">实用工具</el-menu-item>
+          <el-menu-item index="/chat" style = "color:black;">在线聊天</el-menu-item>
           <el-menu-item index="/web" style = "color:black;">常用网站</el-menu-item>
           <el-menu-item index="/log" style = "color:black;">更新日志</el-menu-item>
           <!-- <el-menu-item index="/images">图片上传</el-menu-item> -->
