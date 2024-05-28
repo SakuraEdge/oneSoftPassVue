@@ -19,6 +19,7 @@
       <el-submenu index="3">
         <template slot="title"><i class="el-icon-s-data"></i>数据管理</template>
         <el-menu-item index="/admin/web">自定义网页管理</el-menu-item>
+        <el-menu-item @click="exchange">立刻更新货币汇率</el-menu-item>
         <el-menu-item @click="delMsg" style="color: red">清空在线聊天记录</el-menu-item>
       </el-submenu>
     </el-menu>
@@ -76,6 +77,15 @@ export default {
       this.$axios.post("/delMsg",{}).then(v=>{
         this.$message({
           message: '已将在线聊天记录全部删除',
+          type: "success",
+          duration: 2000
+        })
+      })
+    },
+    exchange() {
+      this.$axios.post("/updateExChange",{}).then(v=>{
+        this.$message({
+          message: '已更新汇率',
           type: "success",
           duration: 2000
         })
