@@ -189,7 +189,7 @@ function getCodeService(packageName,tableName) {
     });
     const name = parts.join('');
 
-    return `package com.eternal.oneSoftPass.service;
+    return `package ${packageName}.service;
 
 import ${packageName}.bean.${name}Bean;
 
@@ -215,7 +215,7 @@ function getCodeServiceImpl(packageName,tableName) {
     let nameDown = name.charAt(0).toLowerCase() + name.slice(1);
     nameDown = parts.join('');
 
-    return `package com.eternal.oneSoftPass.service.impl;
+    return `package ${packageName}.service.impl;
 
 import ${packageName}.dao.I${name}DAO;
 import ${packageName}.service.I${name}Service;

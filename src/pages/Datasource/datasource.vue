@@ -268,14 +268,6 @@ export default {
       })
     },
     sourceSave() {
-      if (this.dataSave.length > 2) {
-        this.$message({
-          message: "你的存储数量已达到上限",
-          type: "error",
-          duration: 2000
-        })
-      }
-      else {
         this.$axios.post("/sourceSave",{
           name: this.name,
           uid: cookie.getCookie("id"),
@@ -305,7 +297,6 @@ export default {
             })
           }
         })
-      }
     },
     copySource(){
       let copy = JSON.stringify(this.checkList)
